@@ -1,0 +1,263 @@
+\chapter{METHODOLOGY}
+\hspace{\parindent} 
+This section describes the methodology for developing the smart companion system for elderly care. The methodology comprises system design, data collection, pre-processing techniques, machine learning methods, hyperparameter configurations, and performance evaluation. The technical methods used in this study include speech recognition, natural language processing, sentiment analysis, and WebRTC-based intercommunication. Each stage of the methodology is explained to ensure clarity and reproducibility.
+
+
+
+\section{System Design}
+\noindent\hspace{2.2em}The proposed smart companion system is designed to support elderly care by combining emotion recognition, real-time communication, and health monitoring. The system architecture consists of hardware (lightweight client), software application, and database components that collectively deliver personalized assistance. The functional diagram of the system is illustrated in Figure 3.1.
+
+\begin{figure}[!htbp]
+    	\centering
+    	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
+    	\caption{\textbf outlines the interaction between hardware users, software users, and backend services. The hardware client acts as the primary interaction device, capturing}
+    	\label{fig:paragraph}
+\end{figure}
+\FloatBarrier
+
+\noindent\textbf{Key Components:}
+\begin{itemize}
+	\item Hardware (Lightweight Client): Captures speech and visual data.
+	\item Mobile Application: Allows monitoring and communication with hardware users.
+	\item Speech Recognition: Google Speech to Text API for Thai speech recognition.
+	\item API Server: FastAPI server to handle tokenization and requests.
+	\item Local LLM: GEMMA 3 for emotion classification and dialogue generation.
+	\item Text-to-Speech: Google Text to Speech API converts the model responses into audio feedback.
+	\item WebRTC Communication: Supports video calls between hardware users and software users.
+	\item Database Systems: PostgreSQL for user information and MongoDB/Pinecone 
+\end{itemize}
+
+\section{Data}
+	\noindent\hspace{2.2em}The system relies on audio and visual data collected from elderly users during natural conversations. Audio data is captured using microphones embedded in the hardware client, while visual data is captured through cameras. The collected data is processed for emotion recognition and conversation generation.\\
+\textbf{Data Pre-Processing}
+\begin{itemize}
+	\item Audio Tokenization: Google Speech to Text API performs automatic speech recognition and converts speech into text.
+	\item Text Tokenization: User inputs are tokenized and filtered before being sent to the LLM.
+\end{itemize}
+
+
+\section{Methods}
+\noindent\textbf{Speech Recognition - Google Speech to Text API}\\
+	\noindent\hspace{2.2em}Google Speech-to-Text API is a cloud-based automatic speech recognition (ASR) service that converts spoken language into written text. It supports Thai speech recognition using deep learning models and accommodates various accents and noise conditions. The API processes audio through the following steps:  
+\begin{itemize}
+	\item Audio Ingestion: Accepts audio input from live streaming or pre-recorded files in various formats.
+	\item Feature Extraction: Processes audio waveforms and extracts relevant features using deep learning techniques.
+	\item Model Inference: Uses Google's neural network models trained on large-scale Thai speech data to generate transcriptions.
+	\item Post-Processing: Applies linguistic and contextual adjustments to improve accuracy, including punctuation and formatting.
+	\item Text Output: Returns transcribed text along with confidence scores and optional speaker diarization.
+\end{itemize}
+
+\noindent\textbf{Emotion Recognition - GEMMA 3}
+\begin{itemize}
+	\item Audio Emotion Recognition: GEMMA 3 model classifies the emotion from the converted texts.
+\end{itemize}
+
+\noindent\textbf{Dialogue Generation - GEMMA 3}
+\begin{itemize}
+	\item The GEMMA 3 model generates emotionally-aware conversations by combining sentiment analysis and dialogue generation.
+\end{itemize}
+
+\noindent\textbf{Video Call Communication - WebRTC}
+\begin{itemize}
+	\item WebRTC is used to facilitate real-time video communication between elderly users and their family members.
+\end{itemize}
+
+\noindent\textbf{Mood Summary Generation}
+\begin{itemize}
+	\item Mood Summary is summarized based on conversation data using GEMMA 3 and stored in MongoDB/Pinecone.
+\end{itemize}
+
+
+\section{ Database Schema}
+	\noindent\hspace{2.2em} 
+The system utilizes PostgreSQL for user-related data and MongoDB/Pinecone for emotion summaries and conversation as shown in Figure 3.2. The key database tables and collections are:\\
+\textbf{PostgreSQL Database (User Data)}
+\begin{itemize}
+	\item \textbf{Users Table}
+	\begin{itemize}
+		\item user\_id (Primary Key, INT)
+		\item name (VARCHAR)
+		\item age (INT)
+		\item email (VARCHAR)
+	\end{itemize}
+\end{itemize}
+
+\noindent
+\textbf{MongoDB (Emotion Summary Storage)}
+\begin{itemize}
+	\item \textbf{Emotion Summaries Collection}
+	\begin{itemize}
+		\item \_id (Primary Key, ObjectId)
+		\item user\_id (Foreign Key, INT, references \textbf{Users(user\_id)} in PostgreSQL)
+		\item timestamp (TIMESTAMP)
+		\item mood\_summary (TEXT)
+	\end{itemize}
+\end{itemize}
+
+\noindent
+\textbf{MongoDB (Dialog History Storage)}
+\begin{itemize}
+	\item \textbf{Dialog History Collection}
+	\begin{itemize}
+		\item \_id (Primary Key, ObjectId)
+		\item user\_id (Foreign Key, INT, references \textbf{Users(user\_id)} in PostgreSQL)
+		\item timestamp (TIMESTAMP)
+		\item message (TEXT)
+		\item speaker (VARCHAR, "user" or "AI agent")
+		\item session\_id (VARCHAR)
+		\item detected\_emotion (VARCHAR)
+	\end{itemize}
+\end{itemize}
+
+\noindent
+\textbf{Pinecone (Dialog Embedding Storage)}
+\begin{itemize}
+	\item \textbf{Dialog Embedding Collection}
+	\begin{itemize}
+		\item \_id (Primary Key, UUID)
+		\item dialog\_id (Foreign Key, ObjectId, references \textbf{Dialog History(\_id)} in MongoDB)
+		\item embedding (Vector)
+		\item metadata (JSON)
+	\end{itemize}
+\end{itemize}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 1.00\textwidth]{figures/ER_Diagram.png}
+	\caption{\textbf ER-Diagram for the Database}
+	\label{fig:ER_Diagram}
+\end{figure}
+
+\section{Hyperparameter Configurations}
+\begin{itemize}
+	\item Google Speech-to-Text API:  
+	\begin{itemize}
+		\item Model: `latest\_long` (optimized for long-form Thai speech)  
+		\item Confidence Threshold: 0.7 (filters low-confidence transcriptions)  
+		\item Enable Automatic Punctuation: `True`  
+		\item Audio Encoding: `LINEAR16`  
+		\item Sample Rate: 16000 Hz  
+	\end{itemize}
+	
+	\item GEMMA 3:  
+	\begin{itemize}
+		\item Model: `gemma:3b` (3-billion parameter version)  
+		\item Max Tokens: `4096` (limits response length)  
+		\item Temperature: `0.8` (higher values increase randomness)  
+		\item Top-k: `40` (limits token selection for coherent responses)  
+		\item Top-p: `0.9` (nucleus sampling for diversity)  
+		\item Repeat Penalty: `1.2` (reduces repetitive text)  
+		\item Seed: `None` (random generation unless specified)  
+		\item GPU Acceleration: `Enabled` (if running on a supported GPU)  
+	\end{itemize}
+	
+	\item WebRTC Connection: 
+	\begin{itemize}
+		\item STUN/TURN Servers: Configured for NAT traversal  
+		\item Video Codec: `VP8`  
+		\item Audio Codec: `Opus`  
+		\item Bitrate: Adaptive  
+		\item Latency Mode: Low-latency enabled  
+	\end{itemize}
+\end{itemize}
+
+\section{Performance Evaluation}
+
+The performance of the smart companion system will be evaluated based on the following metrics:
+
+\subsection{Emotion Recognition Accuracy}
+
+Emotion recognition accuracy will be measured using standard classification evaluation metrics:
+
+\begin{itemize}
+	\item \textbf{Confusion Matrix}: A table comparing predicted emotions against actual labels. It consists of:
+	\begin{itemize}
+		\item \textbf{True Positive (TP)}: Correctly predicted positive instances.
+		\item \textbf{False Positive (FP)}: Incorrectly predicted positive instances.
+		\item \textbf{True Negative (TN)}: Correctly predicted negative instances.
+		\item \textbf{False Negative (FN)}: Incorrectly predicted negative instances.
+	\end{itemize}
+	\item \textbf{Precision, Recall, and F1-Score}:
+	\begin{itemize}
+		\item \textbf{Precision} = $\frac{TP}{TP + FP}$
+		\item Measures the proportion of correctly predicted positive instances among all predicted positive instances.
+		\item \textbf{Recall} = $\frac{TP}{TP + FN}$
+		\item Measures the proportion of correctly predicted positive instances among all actual positive instances.
+		\item \textbf{F1-Score} = $2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}$
+		\item The harmonic mean of precision and recall, balancing both metrics.
+	\end{itemize}
+	\item \textbf{Overall Accuracy}:
+	\begin{itemize}
+		\item $\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$
+		\item Measures the overall correctness of the model by considering both positive and negative instances.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Answer Generation Quality}
+
+The evaluation of the model's ability to generate coherent and relevant responses will be performed using the following metrics:
+
+\begin{itemize}
+	\item \textbf{ROUGE Score (Recall-Oriented Understudy for Gisting Evaluation)}:
+	\begin{itemize}
+		\item Evaluates recall-based overlap of n-grams and longest common subsequence.
+		\item \text{ROUGE-N} = $\frac{\sum_{s \in \text{ReferenceSummaries}} \sum_{gram \in s} \text{CountMatch}(gram)}{\sum_{s \in \text{ReferenceSummaries}} \sum_{gram \in s} \text{Count}(gram)}$
+	\end{itemize}
+	\item \textbf{Exact Match (EM)}:
+	\begin{itemize}
+		\item Measures the percentage of cases where the generated response matches the reference response exactly.
+		\item \text{EM} = $\frac{\text{Number of Exact Matches}}{\text{Total Samples}}$
+	\end{itemize}
+	\item \textbf{Perplexity (PPL)}:
+	\begin{itemize}
+		\item Computes the likelihood of the generated response under the model’s probability distribution, indicating fluency.
+		\item \(\text{PPL} = e^{\left(-\frac{1}{N} \sum_{i=1}^{N} \log P(w_i)\right)}\)
+		\item Where:
+		\begin{itemize}
+			\item \(n\) is the number of words (or tokens) in the generated response.
+			\item \(P(w_i)\) is the probability of the \(i\)-th word \(w_i\) in the generated response according to the model's distribution.
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Human Evaluation}:
+	\begin{itemize}
+		\item Users assess coherence, fluency, and emotional alignment through surveys.
+	\end{itemize}
+\end{itemize}
+
+\subsection{Speech-to-Text (STT) Performance}
+
+The accuracy of the Thai speech-to-text module (e.g., Google Speech to Text API) will be evaluated using:
+
+\begin{itemize}
+	\item \textbf{Word Error Rate (WER)}:
+	\begin{itemize}
+		\item $\text{WER} = \frac{S + D + I}{N}$
+		\item where $S$ = substitutions, $D$ = deletions, $I$ = insertions, and $N$ = total words in reference text.
+	\end{itemize}
+	\item \textbf{Character Error Rate (CER)}:
+	\begin{itemize}
+		\item $\text{CER} = \frac{S + D + I}{N}$
+		\item where $N$ represents total characters in reference text, useful for Thai language without explicit word boundaries.
+	\end{itemize}
+	\item \textbf{Human Evaluation}:
+	\begin{itemize}
+		\item Assessing fluency, tone accuracy, and named entity recognition (NER) for Thai names and locations.
+	\end{itemize}
+\end{itemize}
+
+
+\subsection{Video Call Quality}
+
+Measured by:
+\begin{itemize}
+	\item \textbf{Latency}: Delay between user input and system response.
+	\item \textbf{Jitter}: Variability in packet arrival times.
+	\item \textbf{Packet Loss}: Percentage of lost data packets.
+\end{itemize}
+
+\subsection{Software}
+\begin{itemize}
+	\item Assessed using Black box test and then White box test.
+	\item Utilized Selenium as Software Application Testing Tools.
+\end{itemize}
+

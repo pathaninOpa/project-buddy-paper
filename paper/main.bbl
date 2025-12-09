@@ -1,0 +1,34 @@
+\begin{thebibliography}{3}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chandraumakantham et~al.(2024)Chandraumakantham, Gowtham, Zakariah,
+  and Almazyad]{paper_1}
+O.~Chandraumakantham, N.~Gowtham, M.~Zakariah, and A.~Almazyad.
+\newblock Multimodal emotion recognition using feature fusion: An llm-based
+  approach.
+\newblock \emph{IEEE Access}, 12:\penalty0 108052--108071, 2024.
+\newblock \doi{10.1109/ACCESS.2024.3425953}.
+
+\bibitem[Kitakoshi et~al.(2019)Kitakoshi, Hirose, Yamashita, Suzuki, and
+  Suzuki]{paper_3}
+D.~Kitakoshi, S.~Hirose, A.~Yamashita, M.~Suzuki, and K.~Suzuki.
+\newblock Development of an intelligent dialogue agent for older adults :
+  Evaluation of functions to control spontaneous talk and coordinate speech
+  content.
+\newblock pages 1--6, 2019.
+\newblock \doi{10.1109/TAAI48200.2019.8959870}.
+
+\bibitem[Zhang et~al.(2023)Zhang, Li, Wang, Dong, and Chen]{paper_2}
+Z.~Zhang, R.~Li, Y.~Wang, F.~Dong, and K.~Chen.
+\newblock Research on voice interaction robot system based on the hybrid chat
+  model of retrieval and generation.
+\newblock In \emph{2023 2nd International Conference on Computing,
+  Communication, Perception and Quantum Technology (CCPQT)}, pages 178--183,
+  2023.
+\newblock \doi{10.1109/CCPQT60491.2023.00037}.
+
+\end{thebibliography}

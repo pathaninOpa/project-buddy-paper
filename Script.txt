@@ -1,0 +1,15 @@
+Script
+
+-Our project will be focusing on two tracks
+	first one is hardware
+	second is application
+
+-Lets start with the hardware part, since our user on this side will be elderly people so we want to make the companion robot as natural and comfortable for user as possible.
+/so we started with maybe a teddy bear with digital expression on the screen on his face, and inside we will have embedded system consist of raspberry pi 5 together with stereo and microphone module
+/ that will be all for hardware part, very simple, then we will stream the information that we get from hardware to our server(which we will be discussing) for further processing
+
+-now moving on to the application part, this is where the family or caretaker of the hardware users will be able to interact with them via video call or chat and also monitor their mental health summary(Only summary because of privacy concern).
+
+-Now lets combine the two factors of hardware and application together so we can take a look at the bigger picture.
+/From this architecture diagram, the hardware user will talk to the thin client hardware then the data stream will be feed to the speech recognition system through API server which will then process the speech and convert to text and send to the Local machine running the LLM which will then be sent to text to speech service(COQUI TTS for local or Amazon polly for cloud), then to the raspberry pi speaker and also simuteneously uploaded to the database( which will be mongoDB and Pinecone for dialog recall). This allow the hardware user to be able to communicate with the companion bot in soft real-time.
+/for the application user side they will be able to do video call with the hardware user through the integration of WEBRTC. We also have separate SQL database for specifically for user info too. The application will fetch the mood summary from one of the mongoDB database.

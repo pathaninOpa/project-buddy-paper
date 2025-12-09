@@ -1,0 +1,4 @@
+\thispagestyle {front}
+\noindent \bfseries {Figure}\hfill {\bfseries Page}\par 
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \xpg@aux {}{english}\textbf outlines the interaction between hardware users, software users, and backend services. The hardware client acts as the primary interaction device, capturing}}{8}{}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces \xpg@aux {}{english}\textbf ER-Diagram for the Database}}{11}{}%

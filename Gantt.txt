@@ -1,0 +1,27 @@
+Application UI layout -4
+Authentication - 8
+UI Component(Global) - 3
+
+database schema - 2
+database setup - 3
+Profile page UI - 3
+Buddy ID Verification
+Setting page: Change Username, password, Buddy name, timezone, sign out - 3
+Add buddy
+
+Buddy Page UI - 3
+Video call function - 13
+Live view function - 8
+Daily mood summary - 2
+Reminder box/page - 5
+
+Analysis Page UI - 3
+Graph Summary - 5
+Insight information page - 3
+
+Microphone handling function - 3
+Speaker handling function - 3
+Button handling function - ?
+Screen handling function - 13
+WEBRTC handling function - 8
+Net protocol handling function(inside backend server) - 8

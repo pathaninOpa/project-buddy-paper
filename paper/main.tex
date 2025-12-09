@@ -1,0 +1,164 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+%============ Logs ===========================
+\newcommand{\version}{ver 2.1}
+%=============================================
+
+\documentclass{mahidol_thesis}
+%====== Add the packages here ===============
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{subcaption}
+\usepackage{lscape}
+\usepackage{amsmath}
+\usepackage{lipsum} %Generate dummy text for testing
+\usepackage{placeins}
+ %====== List of Coding Color Style ==============
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1,1,1}
+%=======================
+
+%====== Path to Figure Directories ===============
+\graphicspath{{./figures/chap1/}{./figures/chap2/}{./figures/chap3/}{./figures/chap4/}{./figures/chap5/}{./figures/chap6/}{./figures/appendix/}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Thesis Meta Data (edit each field)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Thesis Title 
+\newcommand{\thesisTitle}{Buddy: An Interactive Companion Robot for Family}
+\newcommand{\thesisTitleTH}{Buddy : หุ่นยนต์ผู้ช่วยสำหรับครอบครัว}
+
+%Thesis Keywords
+\newcommand{\thesisKeywordsTH}{ MLP}
+\newcommand{\thesisKeywords}{  MLP}
+
+\newcommand{\totalPageTH}{๒๘}   %Total pages (See. the total number in English Acknowledgement Page then fill up here!)
+%\newcommand{\totalPageTH}{\pageref{LastPage}}
+
+%First Author name
+\newcommand{\thesisFirstTitleName}{Miss }
+\newcommand{\thesisFirstAuthorName}{Thananya}
+\newcommand{\thesisFirstAuthorLastName}{Osochpromma}
+\newcommand{\thesisFirstTitleNameTH}{นางสาว}
+\newcommand{\thesisFirstAuthorNameTH}{ธนัญญา}
+\newcommand{\thesisFirstAuthorLastNameTH}{โอสถพรมมา}
+\newcommand{\thesisFirstAuthorID}{6481299}
+\newcommand{\thesisFirstAuthorBD}{13 July 2004}
+\newcommand{\thesisFirstAuthorBP}{Bangkok, Thailand}
+\newcommand{\thesisFirstAuthorHC}{Mahidol International College}
+\newcommand{\thesisFirstAuthorTel}{+66 95-875-1156}
+\newcommand{\thesisFirstAuthorEmail}{thananya.oso.@student.mahidol.edu}
+
+%Second Author name
+\newcommand{\thesisSecondTitleName}{Mr. }		%Comment all if you don't have second author
+\newcommand{\thesisSecondAuthorName}{Suttikarn}
+\newcommand{\thesisSecondAuthorLastName}{Khuntong}
+\newcommand{\thesisSecondTitleNameTH}{นาย }
+\newcommand{\thesisSecondAuthorNameTH}{สุทธิกานต์}
+\newcommand{\thesisSecondAuthorLastNameTH}{ขันทอง}
+\newcommand{\thesisSecondAuthorID}{6481305}
+\newcommand{\thesisSecondAuthorBD}{17 October 2003}
+\newcommand{\thesisSecondAuthorBP}{Bangkok, Thailand}
+\newcommand{\thesisSecondAuthorHC}{Mahidol International College}
+\newcommand{\thesisSecondAuthorTel}{+66 97-187-4469}
+\newcommand{\thesisSecondAuthorEmail}{suttikarn.khu@student.mahiol.edu}
+
+%Third Author name
+\newcommand{\thesisThirdTitleName}{Mr.}			%Comment all if you don't have third author
+\newcommand{\thesisThirdAuthorName}{Pathanin}
+\newcommand{\thesisThirdAuthorLastName}{Opachalearn}
+\newcommand{\thesisThirdTitleNameTH}{นาย}
+\newcommand{\thesisThirdAuthorNameTH}{ปธานิน}
+\newcommand{\thesisThirdAuthorLastNameTH}{โอภาเจริญ}
+\newcommand{\thesisThirdAuthorID}{ุ6481323}
+\newcommand{\thesisThirdAuthorBD}{3 October 2003}
+\newcommand{\thesisThirdAuthorBP}{Bangkok, Thailand}
+\newcommand{\thesisThirdAuthorHC}{Mahidol International College}
+\newcommand{\thesisThirdAuthorTel}{+66 82-694-4438}
+\newcommand{\thesisThirdAuthorEmail}{pathanin.opa@student.mahidol.edu}
+
+%Fourth Author name
+%\newcommand{\thesisFourthTitleName}{Mr.}			%Comment all if you don't have fourth author
+%\newcommand{\thesisFourthAuthorName}{Firstname4} \n
+%\newcommand{\thesisFourthAuthorLastName}{Lastname4}
+%\newcommand{\thesisFourthTitleNameTH}{นาย}
+%\newcommand{\thesisFourthAuthorNameTH}{ชื่อผู้แต่ง4}
+%\newcommand{\thesisFourthAuthorLastNameTH}{นามสกุลผู้แต่ง4}
+%\newcommand{\thesisFourthAuthorID}{4444444}
+%\newcommand{\thesisFourthdAuthorBD}{04 April 2002}
+%\newcommand{\thesisFourthAuthorBP}{Bangkok, Thailand}
+%\newcommand{\thesisFourthAuthorHC}{Mahidol International College}
+%\newcommand{\thesisFourthAuthorTel}{444 444 4444}
+%\newcommand{\thesisFourthAuthorEmail}{FourthEmail@gmail.com}
+
+%Month, year and date of thesis publication
+\newcommand{\thesisGradDateTH}{15 กรกฎาคม 2567}  %Graduate Date/Month/Year
+\newcommand{\thesisGradDate}{July 15, 2024} %Graduated Year
+\newcommand{\thesisAcademicYear}{2023} %Academic Year
+\newcommand{\thesisAcademicYearTH}{๒๕๖๖} %Academic Year
+
+%Department
+\newcommand{\thesisDepENG}{Computer Engineering}
+\newcommand{\thesisDepTH}{วิศวกรรมคอมพิวเตอร์}
+
+%Advisor name
+\newcommand{\thesisAdv}{Asst. Prof. Dr. Konlakorn Wongpatikaseree}		%with title name
+\newcommand{\thesisAdvTH}{ผศ.ดร. กลกรณ์ วงศ์ภาติกะเสรี}		%with title name
+\newcommand{\advDegree}{Ph.D. (Information Science)\\ M. Eng. (Information and Communication Technology for Embedded Systems), \\ B.Sc. (Computer Science)}
+
+%Thesis Committees
+\newcommand{\Chair}{\thesisAdv}
+\newcommand{\ChairDegree}{\advDegree}
+\newcommand{\committeeI}{Sumeth Yuenyong}
+\newcommand{\committeeIDegree}{D.Eng (Communications and Integrated Systems),\\ M.Eng (Communications and Integrated Systems), \\ M. Eng. (Information and Communication Technology for Embedded Systems), \\ B.Eng. (Electrical Engineering) }
+\newcommand{\committeeII}{Asst. Prof. Lalita Narupiyakul}
+\newcommand{\committeeIIDegree}{Ph.D. (Computer Science), \\ PH.D. (Electrical and Computer Engineering), \\  M.Eng. (Computer Engineering) , \\ B.Sc. (Mathematics)}
+%\newcommand{\committeeIII}{Committee 3}
+%\newcommand{\committeeIIIDegree}{Ph.D. (Computer Science)}
+
+\begin{document}
+%---- Cover Page Section ------
+\coverpageENG
+\coverpageENGTwo
+\entitlepageOne
+\entitlepageTwo
+%---- Front Page Section ------
+\pagestyle{front}
+\frontmatter
+\biography
+\acknowledgement{acknowledgement.tex}
+\abstractTH{abstractTH.tex}
+\abstractENG{abstractENG.tex}
+\tableofcontents
+\newpage
+\listoftables
+\newpage
+\listoffigures
+%---- Body -----
+\pagestyle{chapter}
+\mainmatter
+\pagestyle{fancy}
+\input{chapter1.tex}
+\input{chapter2.tex}
+\input{chapter3.tex}
+\input{chapter4.tex}
+\input{chapter5.tex}
+\newpage
+%---- Bibliography -----
+\pagestyle{bibliography}
+\bibliography{references} 
+\bibliographystyle{abbrvnat}
+\label{lastpage}
+\newpage
+%---- Appendix ----
+%\coverAppendix
+%\pagestyle{appendix}
+%\appendix
+%\input{AppendixA.tex}
+
+\end{document}
