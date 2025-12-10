@@ -37,17 +37,13 @@
 \contentsline {subsection}{\numberline {3.7.3}Speech-to-Text (STT) Performance}{17}{}%
 \contentsline {subsection}{\numberline {3.7.4}Video Call Quality}{18}{}%
 \contentsline {subsection}{\numberline {3.7.5}Software}{18}{}%
-\contentsline {section}{\numberline {3.8}Integration of the Three Subsystems}{19}{}%
-\contentsline {subsection}{\numberline {3.8.1}Real-Time Sync Between Apps}{19}{}%
-\contentsline {subsection}{\numberline {3.8.2}Frontend Implementation}{19}{}%
-\contentsline {subsection}{\numberline {3.8.3}Backend Implementation}{19}{}%
-\contentsline {chapter}{\numberline {4}RESULT}{21}{}%
-\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{21}{}%
-\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{22}{}%
-\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{22}{}%
-\contentsline {subsection}{\numberline {4.3.1}Human Evaluation (Survey Score)}{22}{}%
-\contentsline {subsection}{\numberline {4.3.2}LLM-as-Judge Evaluation}{22}{}%
-\contentsline {section}{\numberline {4.4}Telecommunication system}{23}{}%
-\contentsline {section}{\numberline {4.5}Satisfaction}{23}{}%
-\contentsline {chapter}{\numberline {5}CONCLUSION}{24}{}%
-\contentsline {chapter}{REFERENCES}{25}{}%
+\contentsline {chapter}{\numberline {4}RESULT}{19}{}%
+\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{19}{}%
+\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{20}{}%
+\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{20}{}%
+\contentsline {subsection}{\numberline {4.3.1}Human Evaluation (Survey Score)}{20}{}%
+\contentsline {subsection}{\numberline {4.3.2}LLM-as-Judge Evaluation}{20}{}%
+\contentsline {section}{\numberline {4.4}Telecommunication system}{21}{}%
+\contentsline {section}{\numberline {4.5}Satisfaction}{21}{}%
+\contentsline {chapter}{\numberline {5}CONCLUSION}{22}{}%
+\contentsline {chapter}{REFERENCES}{23}{}%
