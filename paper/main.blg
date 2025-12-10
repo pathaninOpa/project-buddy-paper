@@ -5,7 +5,7 @@ Reallocating 'name_of_file' (item size: 1) to 11 items.
 Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: abbrvnat.bst
 Database file #1: references.bib
-I was expecting a `,' or a `}'---line 67 of file references.bib
+I was expecting a `,' or a `}'---line 133 of file references.bib
  :  
  :  @book{DataMiningbook,
 (Error may have been on previous line)

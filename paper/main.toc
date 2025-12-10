@@ -19,24 +19,25 @@
 \contentsline {section}{\numberline {2.2}AI Affective Conversational Robot with Hybrid Generative-Based and Retrieval-Based Dialogue Models \cite {paper_3}}{5}{}%
 \contentsline {section}{\numberline {2.3} Development of an Intelligent Dialogue Agent for Older Adults : Evaluation of Functions to Control Spontaneous Talk and Coordinate Speech Content \cite {paper_2}}{6}{}%
 \contentsline {chapter}{\numberline {3}METHODOLOGY}{7}{}%
-\contentsline {section}{\numberline {3.1}System Design}{7}{}%
-\contentsline {section}{\numberline {3.2}Data}{9}{}%
-\contentsline {section}{\numberline {3.3}Methods}{9}{}%
-\contentsline {section}{\numberline {3.4} Database Schema}{10}{}%
-\contentsline {section}{\numberline {3.5}Hyperparameter Configurations}{11}{}%
-\contentsline {section}{\numberline {3.6}Performance Evaluation}{12}{}%
-\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{12}{}%
-\contentsline {subsection}{\numberline {3.6.2}Answer Generation Quality}{13}{}%
-\contentsline {subsection}{\numberline {3.6.3}Speech-to-Text (STT) Performance}{14}{}%
-\contentsline {subsection}{\numberline {3.6.4}Video Call Quality}{14}{}%
-\contentsline {subsection}{\numberline {3.6.5}Software}{14}{}%
-\contentsline {chapter}{\numberline {4}RESULT}{15}{}%
-\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{15}{}%
-\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{16}{}%
-\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{16}{}%
-\contentsline {subsection}{\numberline {4.3.1}Human Evaluation (Survey Score)}{16}{}%
-\contentsline {subsection}{\numberline {4.3.2}LLM-as-Judge Evaluation}{16}{}%
-\contentsline {section}{\numberline {4.4}Telecommunication system}{17}{}%
-\contentsline {section}{\numberline {4.5}Satisfaction}{17}{}%
-\contentsline {chapter}{\numberline {5}CONCLUSION}{18}{}%
-\contentsline {chapter}{REFERENCES}{19}{}%
+\contentsline {section}{\numberline {3.1}Caretaker Application}{7}{}%
+\contentsline {subsection}{\numberline {3.1.1}UI/UX Design}{7}{}%
+\contentsline {section}{\numberline {3.2}Data}{8}{}%
+\contentsline {section}{\numberline {3.3}Methods}{8}{}%
+\contentsline {section}{\numberline {3.4} Database Schema}{9}{}%
+\contentsline {section}{\numberline {3.5}Hyperparameter Configurations}{10}{}%
+\contentsline {section}{\numberline {3.6}Performance Evaluation}{11}{}%
+\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{11}{}%
+\contentsline {subsection}{\numberline {3.6.2}Answer Generation Quality}{12}{}%
+\contentsline {subsection}{\numberline {3.6.3}Speech-to-Text (STT) Performance}{13}{}%
+\contentsline {subsection}{\numberline {3.6.4}Video Call Quality}{13}{}%
+\contentsline {subsection}{\numberline {3.6.5}Software}{13}{}%
+\contentsline {chapter}{\numberline {4}RESULT}{14}{}%
+\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{14}{}%
+\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{15}{}%
+\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{15}{}%
+\contentsline {subsection}{\numberline {4.3.1}Human Evaluation (Survey Score)}{15}{}%
+\contentsline {subsection}{\numberline {4.3.2}LLM-as-Judge Evaluation}{15}{}%
+\contentsline {section}{\numberline {4.4}Telecommunication system}{16}{}%
+\contentsline {section}{\numberline {4.5}Satisfaction}{16}{}%
+\contentsline {chapter}{\numberline {5}CONCLUSION}{17}{}%
+\contentsline {chapter}{REFERENCES}{18}{}%
