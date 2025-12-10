@@ -3,13 +3,136 @@
 This section describes the methodology for developing the smart companion system for elderly care. The methodology comprises system design, data collection, pre-processing techniques, machine learning methods, hyperparameter configurations, and performance evaluation. The technical methods used in this study include speech recognition, natural language processing, sentiment analysis, and WebRTC-based intercommunication. Each stage of the methodology is explained to ensure clarity and reproducibility.
 
 
-
+%=================Care Taker App=========================================
 \section{Caretaker Application}
 \subsection{UI/UX Design}
-	\hspace{1em}As the primary user is the caretaker who needs quick access to important information, therefore this application was designed with a focus on simplicity, and usability. The design process began with wireframing with Figma, where the layout, visual hierarchy, and user flow were all maintained by outlining each page.
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		 As the primary user is the caretaker who needs quick access to important information, therefore this application was designed with a focus on simplicity, and usability. The design process began with wireframing with Figma, where the layout, visual hierarchy, and user flow were all maintained by outlining each page.
+	 	\par
+	 }
+	
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		An emotion analysis dashboard was created to provide caregivers with an easy to understand overview of the care receiver’s emotion throughout the day, a recent mood card, and chat log between care receiver and the Buddy (care receiver application). The visualization includes graphs and datacard of the emotion trends calculated by an equation implemented inside the care receiver app, which will be discussed later on. Moreover, a reminder scheduling interface was designed to allow caregivers to easily set daily reminders for the care receiver.
+		\par
+	}
+	
+	\newpage
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		In the duration of the design phase, accessibility, and simplicity for users was applied, such as the user journey in the app, to ensure that the caregiver can simply use the app in every situation.
+		\par
+	}
+\subsection{Frontend Implementation}
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		The frontend was developed using flutter as a framework, and dart as the programming language. This application contain multiple key screen included:
+		\par
+	}
+	\begin{enumerate}[leftmargin=2.2cm]
+		\item Login page:
+		\begin{enumerate}[label=\alph*.] 
+			\item Integrates Google Sign-In by using Firebase Authentication. Moreover, after the user successfully signs in for the first time, there will be a pop up on the screen, asking a basic question of the user to get to know them better.
+		\end{enumerate}
+		
+		\item Home page:
+		\begin{enumerate}[label=\alph*.] 
+			\item Display the buddies, and add the buddy. If the add buddy button was clicked, a new pop up would appear asking for the basic information of the care receiver that will be using this buddy to gain the basic information of the care receiver. Then, the buddy code will appear, the user can copy that code and paste it in a care receiver side to successfully connect the application.
+		\end{enumerate}
+		
+		\item Buddy detail page :
+		\begin{enumerate}[label=\alph*.] 
+			\item Latest mood card, video call button, reminder button, analysis button, and information button. 
+		\end{enumerate}
+		
+		\item Analytics page :
+		\begin{enumerate}[label=\alph*.] 
+			\item Display an overall Emotional Snapshot, 4-Hour Emotion Trend, Emotion Counts Today, and Detail Message Log. The Overall emotional snapshot, emotional counts today, and detailed message log is retrieved directly from the firebase (some module needs the . However, the 4-Hour Emotion Trend was calculated by separating each time frame as a bucket, then calculating an average emotion score for each bucket, and finally displaying it in the line chart.
+		\end{enumerate}
+		
+		\item Reminder page :
+		\begin{enumerate}[label=\alph*.] 
+			\item Display the calendar card, announced card, waiting card, and add a reminder button. If the add reminder button has been clicked, it will go to the next page which is the “Add new event” page, where the user can fill the event title, description, date, time, and save the event. 
+		\end{enumerate}
+		
+		\item Video call UI :
+		\begin{enumerate}[label=\alph*.] 
+			\item After the video call button has been triggered, the ZegoCloud video call UI will automatically appear, which will allow the user to communicate via video calling.
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+\subsection{Backend Implementation}
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		The Care Receiver is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
+		\par
+	}
+	
+	\begin{enumerate}[leftmargin=2.2cm]
+		\item Google Authentication: To ensure a reliable and secure sign in.
+		\item Firestore: To store, and update real time data.
+		\item Zegocloud: To handle a real time video call
+	\end{enumerate}
 
+%=================Care Receiver App=========================================
+\newpage
+\section{Care Receiver Application}
+\subsection{UI/UX Design}
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		The Care Receiver is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
+		\par
+	}
 
+\subsection{Frontend Implementation}
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		Care receiver app is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
+		\par
+	}
+	\begin{enumerate}[leftmargin=2.2cm]
+		\item Flutter screens:
+		\begin{enumerate}[label=\alph*.] 
+			\item Main : Initialize Firebase and Zegucloud service, while also check for app’s log-in state
 
+			\item Id input screen   : If the app never logged in before, redirect to this screen. This require user to input “buddy id” to pairing with the care giver app
+			
+			\item Home screen      : Display the face of the chat bot
+			
+			\item Contact screen   : Display the contact screen for manual calling.
+		\end{enumerate}
+		
+	\end{enumerate}
+
+	\subsection{Backend Implementation}
+	{ 
+		\setlength{\leftskip}{1.8cm}
+		\setlength{\parindent}{5em}
+		The backend layer of the Care Receiver Application utilizes Firebase Cloud Firestore as its data store. Since Firestore provides the ability to have real-time data sync while still having a strong security. For backend, These are responsible for a core functionality:
+		\par
+	}
+
+			\begin{enumerate}[leftmargin=2.2cm]
+			\item Service:
+			\begin{enumerate}[label=\alph*.] 
+				\item Firebase service   : Handle all Firestore database operation, include read and write on data base
+				
+				\item Zegocloud      : provide a video call service for chat bot, in order to perform a video call to caretaker or receive a call from caretaker. 
+			\end{enumerate}
+			
+		\end{enumerate}
+
+%=================Pipe line =========================================
+\newpage
 \noindent\textbf{Key Components:}
 \begin{itemize}
 	\item Hardware (Lightweight Client): Captures speech and visual data.
@@ -255,4 +378,3 @@ Measured by:
 	\item Assessed using Black box test and then White box test.
 	\item Utilized Selenium as Software Application Testing Tools.
 \end{itemize}
-
