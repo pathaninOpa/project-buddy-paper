@@ -40,10 +40,12 @@ This section describes the methodology for developing the smart companion system
 			\item Integrates Google Sign-In by using Firebase Authentication. Moreover, after the user successfully signs in for the first time, there will be a pop up on the screen, asking a basic question of the user to get to know them better.
 		\end{enumerate}
 		
+		
 		\item Home page:
 		\begin{enumerate}[label=\alph*.] 
 			\item Display the buddies, and add the buddy. If the add buddy button was clicked, a new pop up would appear asking for the basic information of the care receiver that will be using this buddy to gain the basic information of the care receiver. Then, the buddy code will appear, the user can copy that code and paste it in a care receiver side to successfully connect the application.
 		\end{enumerate}
+		
 		
 		\item Buddy detail page :
 		\begin{enumerate}[label=\alph*.] 
@@ -67,6 +69,64 @@ This section describes the methodology for developing the smart companion system
 		
 	\end{enumerate}
 	
+
+		\begin{figure}[h]
+		\centering
+		% --- First Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/LoginScreen.png}
+			\caption{Login screen}
+			\label{fig:1}
+		\end{subfigure}
+		\hfill % Adds flexible space between images
+		% --- Second Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/HomeScreen.png}
+			\caption{Home page}
+			\label{fig:2}
+		\end{subfigure}
+		\hfill % Adds flexible space between images
+		% --- Third Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/BuddyInfoScreen.png}
+			\caption{V}
+			\label{fig:3}
+		\end{subfigure}
+
+	\end{figure}
+\newpage
+	
+		\begin{figure}[h]
+		\centering
+		% --- First Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/EmotionAnalysis.png}
+			\caption{Analytic Page}
+			\label{fig:4}
+		\end{subfigure}
+		\hfill % Adds flexible space between images
+		% --- Second Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/ReminderCreateScreen.png}
+			\caption{Reminder page}
+			\label{fig:5}
+		\end{subfigure}
+		\hfill % Adds flexible space between images
+		% --- Third Subfigure ---
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{figures/Chapter3/CallingScreen.png}
+			\caption{Buddy detail page}
+			\label{fig:6}
+		\end{subfigure}
+		
+	\end{figure}
+
 \subsection{Backend Implementation}
 	{ 
 		\setlength{\leftskip}{1.8cm}
@@ -74,6 +134,7 @@ This section describes the methodology for developing the smart companion system
 		The Care Receiver is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
 		\par
 	}
+	
 	
 	\begin{enumerate}[leftmargin=2.2cm]
 		\item Google Authentication: To ensure a reliable and secure sign in.

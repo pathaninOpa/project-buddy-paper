@@ -1,0 +1,25 @@
+# LaTeX generated files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.pdf
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.dvi
+*.nav
+*.snm
+*.vrb
+
+# TeXstudio auxiliary files
+*.txss
+
+# VS Code / Editor settings
+.vscode/
+.DS_Store
+*.swp
