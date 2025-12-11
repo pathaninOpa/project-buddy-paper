@@ -30,25 +30,27 @@
 \contentsline {subsubsection}{\numberline {3.3.2.1}UI/UX Design}{13}{}%
 \contentsline {subsubsection}{\numberline {3.3.2.2}Frontend Implementation}{13}{}%
 \contentsline {subsubsection}{\numberline {3.3.2.3}Backend Implementation}{13}{}%
-\contentsline {subsection}{\numberline {3.3.3}Pipe Line}{15}{}%
-\contentsline {subsubsection}{\numberline {3.3.3.1}UI/UX Design}{15}{}%
-\contentsline {subsubsection}{\numberline {3.3.3.2}Frontend Implementation}{15}{}%
-\contentsline {subsubsection}{\numberline {3.3.3.3}Backend Implementation}{15}{}%
-\contentsline {section}{\numberline {3.4}Database Schema}{17}{}%
-\contentsline {section}{\numberline {3.5}Hyperparameter Configurations}{19}{}%
-\contentsline {section}{\numberline {3.6}Performance Evaluation}{20}{}%
-\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{20}{}%
-\contentsline {subsection}{\numberline {3.6.2}Dialogue Generation Quality}{20}{}%
-\contentsline {subsection}{\numberline {3.6.3}Speech-to-Text (STT) Performance}{21}{}%
-\contentsline {subsection}{\numberline {3.6.4}Video Call Quality}{22}{}%
-\contentsline {subsection}{\numberline {3.6.5}Software Testing and Validation}{22}{}%
-\contentsline {chapter}{\numberline {4}RESULT}{24}{}%
-\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{24}{}%
-\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{25}{}%
-\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{25}{}%
-\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{26}{}%
-\contentsline {subsection}{\numberline {4.3.2}Human Evaluation (Survey Score)}{27}{}%
-\contentsline {section}{\numberline {4.4}Telecommunication system}{27}{}%
-\contentsline {section}{\numberline {4.5}Satisfaction}{28}{}%
-\contentsline {chapter}{\numberline {5}CONCLUSION}{29}{}%
-\contentsline {chapter}{REFERENCES}{30}{}%
+\contentsline {subsection}{\numberline {3.3.3}Chatbot pipeline: Data Flow and Processing}{15}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.1}Data Collection and Ingestion}{15}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.2}Data Preprocessing and Contextualization}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.3}Model Development}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.4}Evaluation}{16}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.5}Integration with App}{17}{}%
+\contentsline {section}{\numberline {3.4}Database Schema}{18}{}%
+\contentsline {section}{\numberline {3.5}Hyperparameter Configurations}{20}{}%
+\contentsline {section}{\numberline {3.6}Performance Evaluation}{21}{}%
+\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{21}{}%
+\contentsline {subsection}{\numberline {3.6.2}Dialogue Generation Quality}{21}{}%
+\contentsline {subsection}{\numberline {3.6.3}Speech-to-Text (STT) Performance}{22}{}%
+\contentsline {subsection}{\numberline {3.6.4}Video Call Quality}{23}{}%
+\contentsline {subsection}{\numberline {3.6.5}Software Testing and Validation}{23}{}%
+\contentsline {chapter}{\numberline {4}RESULT}{25}{}%
+\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{25}{}%
+\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{26}{}%
+\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{26}{}%
+\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{27}{}%
+\contentsline {subsection}{\numberline {4.3.2}Human Evaluation (Survey Score)}{28}{}%
+\contentsline {section}{\numberline {4.4}Telecommunication system}{28}{}%
+\contentsline {section}{\numberline {4.5}Satisfaction}{29}{}%
+\contentsline {chapter}{\numberline {5}CONCLUSION}{30}{}%
+\contentsline {chapter}{REFERENCES}{31}{}%
