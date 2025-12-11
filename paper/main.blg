@@ -1,48 +1,55 @@
-This is BibTeX, Version 0.99d (TeX Live 2025)
+This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: abbrvnat.bst
 Database file #1: references.bib
+I was expecting a `,' or a `}'---line 133 of file references.bib
+ :  
+ :  @book{DataMiningbook,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--empty journal in paper_3
-You've used 5 entries,
+You've used 3 entries,
             2773 wiz_defined-function locations,
-            628 strings with 6119 characters,
-and the built_in function-call counts, 3180 in all, are:
-= -- 277
-> -- 219
-< -- 4
-+ -- 73
-- -- 68
-* -- 270
-:= -- 486
-add.period$ -- 21
-call.type$ -- 5
-change.case$ -- 36
-chr.to.int$ -- 5
-cite$ -- 11
-duplicate$ -- 128
-empty$ -- 226
-format.name$ -- 73
-if$ -- 677
+            614 strings with 5483 characters,
+and the built_in function-call counts, 1992 in all, are:
+= -- 172
+> -- 135
+< -- 2
++ -- 45
+- -- 42
+* -- 173
+:= -- 303
+add.period$ -- 12
+call.type$ -- 3
+change.case$ -- 23
+chr.to.int$ -- 3
+cite$ -- 7
+duplicate$ -- 80
+empty$ -- 141
+format.name$ -- 45
+if$ -- 423
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 4
-newline$ -- 38
-num.names$ -- 22
-pop$ -- 77
+missing$ -- 3
+newline$ -- 26
+num.names$ -- 12
+pop$ -- 46
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 20
 quote$ -- 0
-skip$ -- 111
+skip$ -- 70
 stack$ -- 0
-substring$ -- 121
-swap$ -- 29
-text.length$ -- 3
+substring$ -- 85
+swap$ -- 17
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 55
+type$ -- 33
 warning$ -- 1
-while$ -- 24
+while$ -- 14
 width$ -- 0
-write$ -- 82
-(There was 1 warning)
+write$ -- 51
+(There was 1 error message)
