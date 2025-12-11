@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {3.1.1}UI/UX Design}{7}{}%
 \contentsline {subsection}{\numberline {3.1.2}Frontend Implementation}{8}{}%
 \contentsline {subsection}{\numberline {3.1.3}Backend Implementation}{10}{}%
-\contentsline {section}{\numberline {3.2}Care Receiver Application}{11}{}%
+\contentsline {section}{\numberline {3.2}Elderly Application}{11}{}%
 \contentsline {subsection}{\numberline {3.2.1}UI/UX Design}{11}{}%
 \contentsline {subsection}{\numberline {3.2.2}Frontend Implementation}{11}{}%
 \contentsline {subsection}{\numberline {3.2.3}Backend Implementation}{12}{}%
@@ -40,10 +40,10 @@
 \contentsline {chapter}{\numberline {4}RESULT}{22}{}%
 \contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{22}{}%
 \contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{23}{}%
-\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{23}{}%
-\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{24}{}%
+\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{24}{}%
+\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{25}{}%
 \contentsline {subsection}{\numberline {4.3.2}Human Evaluation (Survey Score)}{25}{}%
-\contentsline {section}{\numberline {4.4}Telecommunication system}{25}{}%
+\contentsline {section}{\numberline {4.4}Telecommunication system}{26}{}%
 \contentsline {section}{\numberline {4.5}Satisfaction}{26}{}%
-\contentsline {chapter}{\numberline {5}CONCLUSION}{27}{}%
-\contentsline {chapter}{REFERENCES}{28}{}%
+\contentsline {chapter}{\numberline {5}CONCLUSION}{28}{}%
+\contentsline {chapter}{REFERENCES}{29}{}%
