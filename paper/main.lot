@@ -1,7 +1,7 @@
 \thispagestyle {front}
 {\noindent \bfseries Table}\hfill {\bfseries Page}\par 
 \contentsline {table}{\numberline {1.1}{\ignorespaces \xpg@aux {}{english}Project Timeline}}{2}{}%
-\contentsline {table}{\numberline {4.1}{\ignorespaces \xpg@aux {}{english}Speech-to-Text Performance Metrics}}{16}{}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces \xpg@aux {}{english}Emotion Recognition Per-Class Metrics}}{16}{}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces \xpg@aux {}{english}Comparative Dialogue Quality Scores (Scale 1-10)}}{17}{}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces \xpg@aux {}{english}Human Evaluation MOS Scores}}{18}{}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces \xpg@aux {}{english}Speech-to-Text Performance Metrics}}{18}{}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces \xpg@aux {}{english}Emotion Recognition Per-Class Metrics}}{18}{}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces \xpg@aux {}{english}Comparative Dialogue Quality Scores (Scale 1-10)}}{19}{}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces \xpg@aux {}{english}Human Evaluation MOS Scores}}{20}{}%

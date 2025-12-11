@@ -1,9 +1,21 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aung et~al.(2024)Aung, Thavornmongkol, Boribalburephan,
+  Tangsriworakan, Pipatsrisawat, and Achakulvisut]{aung-etal-2024-thonburian}
+Z.~H. Aung, T.~Thavornmongkol, A.~Boribalburephan, V.~Tangsriworakan,
+  K.~Pipatsrisawat, and T.~Achakulvisut.
+\newblock Thonburian whisper: Robust fine-tuned and distilled whisper for
+  {T}hai.
+\newblock In N.~Calzolari, M.-Y. Kan, A.~Lenci, Q.~Lu, and T.-L. Wong, editors,
+  \emph{Proceedings of the 7th International Conference on Natural Language and
+  Speech Processing (ICNLSP 2024)}, pages 149--156, Trento, dec 2024.
+  Association for Computational Linguistics.
+\newblock URL \url{https://aclanthology.org/2024.icnlsp-1.17/}.
 
 \bibitem[Chandraumakantham et~al.(2024)Chandraumakantham, Gowtham, Zakariah,
   and Almazyad]{paper_1}
@@ -21,6 +33,12 @@ D.~Kitakoshi, S.~Hirose, A.~Yamashita, M.~Suzuki, and K.~Suzuki.
   content.
 \newblock pages 1--6, 2019.
 \newblock \doi{10.1109/TAAI48200.2019.8959870}.
+
+\bibitem[ZegoCloud(2024)]{zegocloud}
+ZegoCloud.
+\newblock Real-time voice \& video call sdk, 2024.
+\newblock URL \url{https://www.zegocloud.com/docs}.
+\newblock Accessed: 2025-02-13.
 
 \bibitem[Zhang et~al.(2023)Zhang, Li, Wang, Dong, and Chen]{paper_2}
 Z.~Zhang, R.~Li, Y.~Wang, F.~Dong, and K.~Chen.

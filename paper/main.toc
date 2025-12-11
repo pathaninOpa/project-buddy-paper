@@ -25,18 +25,18 @@
 \contentsline {section}{\numberline {3.4} Database Schema}{10}{}%
 \contentsline {section}{\numberline {3.5}Hyperparameter Configurations}{11}{}%
 \contentsline {section}{\numberline {3.6}Performance Evaluation}{12}{}%
-\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{12}{}%
-\contentsline {subsection}{\numberline {3.6.2}Answer Generation Quality}{13}{}%
+\contentsline {subsection}{\numberline {3.6.1}Emotion Recognition Accuracy}{13}{}%
+\contentsline {subsection}{\numberline {3.6.2}Dialogue Generation Quality}{13}{}%
 \contentsline {subsection}{\numberline {3.6.3}Speech-to-Text (STT) Performance}{14}{}%
 \contentsline {subsection}{\numberline {3.6.4}Video Call Quality}{14}{}%
-\contentsline {subsection}{\numberline {3.6.5}Software}{14}{}%
-\contentsline {chapter}{\numberline {4}RESULT}{15}{}%
-\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{15}{}%
-\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{16}{}%
-\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{17}{}%
-\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{17}{}%
-\contentsline {subsection}{\numberline {4.3.2}Human Evaluation (Survey Score)}{18}{}%
-\contentsline {section}{\numberline {4.4}Telecommunication system}{18}{}%
-\contentsline {section}{\numberline {4.5}Satisfaction}{18}{}%
-\contentsline {chapter}{\numberline {5}CONCLUSION}{20}{}%
-\contentsline {chapter}{REFERENCES}{21}{}%
+\contentsline {subsection}{\numberline {3.6.5}Software Testing and Validation}{15}{}%
+\contentsline {chapter}{\numberline {4}RESULT}{17}{}%
+\contentsline {section}{\numberline {4.1}Speech-to-Text (STT) Performance}{17}{}%
+\contentsline {section}{\numberline {4.2}Emotion Recognition Performance}{18}{}%
+\contentsline {section}{\numberline {4.3}Dialogue Generation Quality}{19}{}%
+\contentsline {subsection}{\numberline {4.3.1}LLM-as-Judge Evaluation Results}{19}{}%
+\contentsline {subsection}{\numberline {4.3.2}Human Evaluation (Survey Score)}{20}{}%
+\contentsline {section}{\numberline {4.4}Telecommunication system}{20}{}%
+\contentsline {section}{\numberline {4.5}Satisfaction}{21}{}%
+\contentsline {chapter}{\numberline {5}CONCLUSION}{22}{}%
+\contentsline {chapter}{REFERENCES}{23}{}%

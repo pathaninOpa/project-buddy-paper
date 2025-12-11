@@ -38,7 +38,7 @@ The results are presented through a combination of quantitative metrics and qual
 \end{table}
 
 \section{Emotion Recognition Performance}
-\noindent\hspace{2.2em}Following the transcription, the \textbf{gemma3:1b} model, fine-tuned using LoRA (Low-Rank Adaptation), was tasked with performing text-based emotion classification. The model identifies the user's emotional state to tailor the companion's response.
+\noindent\hspace{2.2em}Following the transcription, the \textbf{gemma3:1b} model, was tasked with performing text-based emotion classification. The model identifies the user's emotional state to tailor the companion's response.
 
 \noindent\hspace{2.2em}The model was evaluated against a manually labeled test set comprising 700 samples (100 per class). The confusion matrix (Figure 4.1) illustrates the classification performance across the target emotion classes.
 
@@ -96,7 +96,7 @@ The results are presented through a combination of quantitative metrics and qual
 \noindent\hspace{2.2em}The results indicate that while the larger 27b model outperforms the 4b model in general knowledge tasks (8.40 vs 4.90), the lightweight 4b model remains highly competitive in domains crucial for an elderly companion, specifically \textbf{Emotions \& Social Connection} (7.80) and \textbf{Health \& Wellbeing} (7.70). This suggests that the optimized 4b model is viable for on-device deployment where emotional support is the primary function.
 
 \subsection{Human Evaluation (Survey Score)}
-\noindent\hspace{2.2em}To complement the automated evaluation, a user study involving 15 participants from the target demographic was conducted. Participants rated the system using a 5-point Mean Opinion Score (MOS).
+\noindent\hspace{2.2em}To complement the automated evaluation, a user study involving 20 participants from the target demographic was conducted. Participants rated the system using a 5-point Mean Opinion Score (MOS).
 
 \begin{table}[hbt!]
     \centering
@@ -104,26 +104,26 @@ The results are presented through a combination of quantitative metrics and qual
     \begin{tabular}{|l|c|}
     \hline
     \textbf{Criterion} & \textbf{Average Score (1-5)} \\ \hline
-    Coherence & 4.5 \\ \hline
-    Fluency & 4.6 \\ \hline
-    Empathy \& Appropriateness & 4.7 \\ \hline
-    Overall Satisfaction & 4.6 \\ \hline
+    Coherence & 4.2 \\ \hline
+    Fluency & 4.3 \\ \hline
+    Empathy \& Appropriateness & 4.2 \\ \hline
+    Overall Satisfaction & 4.2 \\ \hline
     \end{tabular}
     \label{tab:human_mos}
 \end{table}
 
 \section{Telecommunication system}
-\noindent\hspace{2.2em}For the video call feature, the system utilizes \textbf{ZegoCloud (ZegoUIKitPrebuiltCall)} to establish a peer-to-peer WebRTC connection. This ensures low-latency communication essential for real-time interaction between the elderly and caretakers.
+\noindent\hspace{2.2em}For the video call feature, the system utilizes \textbf{ZegoCloud (ZegoUIKitPrebuiltCall)} \cite{zegocloud} to establish a peer-to-peer WebRTC connection. This ensures low-latency communication essential for real-time interaction between the elderly and caretakers.
 
-\noindent\hspace{2.2em}Performance testing yielded the following results:
+\noindent\hspace{2.2em}Performance testing was conducted to benchmark the system against ZegoCloud's industry standards. The results are as follows:
 \begin{itemize}
-	\item \textbf{Connection Success Rate:} 98.5\% (tested over 50 attempts).
-	\item \textbf{Average Latency:} 150 ms (on 4G/5G networks).
-	\item \textbf{Call Stability:} Maintained connection without drops for 95\% of calls exceeding 10 minutes.
+	\item \textbf{Connection Success Rate:} The system achieved a success rate of \textbf{98.5\%} (tested over 50 attempts). This is highly competitive, nearing ZegoCloud's reported industry standard of $>$99\% for instant call opening rates.
+	\item \textbf{Average Latency:} The average latency was recorded at \textbf{250 ms} on 4G/5G networks. This performance exceeds the typical global average for video calls, which is approximately \textbf{300 ms}.
+	\item \textbf{Call Stability:} The system maintained a connection without drops for \textbf{95\%} of calls exceeding 10 minutes. This stability aligns with ZegoCloud's robust architecture, which is designed to tolerate up to 70\% packet loss while preserving audio-visual integrity.
 \end{itemize}
 
 \section{Satisfaction}
-\noindent\hspace{2.2em}The user satisfaction of the “Buddy” system was evaluated through a survey conducted with 10 participants. The survey assessed key performance metrics including overall satisfaction, perceived accuracy, and response speed. The results are summarized as follows:
+\noindent\hspace{2.2em}The user satisfaction of the “Buddy” system was evaluated through a survey conducted with 20 participants. The survey assessed key performance metrics including overall satisfaction, perceived accuracy, and response speed. The results are summarized as follows:
 
 \begin{itemize}
     \item \textbf{Overall Satisfaction:} The system achieved an average satisfaction score of \textbf{5.5 out of 7}, indicating a generally positive reception among the test group.

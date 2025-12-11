@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.12.11)  11 DEC 2025 13:10
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.12.11)  11 DEC 2025 21:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -885,14 +885,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--134
 ]
 LaTeX Font Info:    Font shape `TU/THSarabun(0)/m/n' will be
 (Font)              scaled to size 15.96002pt on input line 135.
-
-Missing character: There is no ด (U+0E14) in font Times New Roman/OT:script=lat
-n;language=dflt;!
-Missing character: There is no ร (U+0E23) in font Times New Roman/OT:script=lat
-n;language=dflt;!
 LaTeX Font Info:    Font shape `TU/THSarabun(0)/b/n' will be
 (Font)              scaled to size 18.62003pt on input line 135.
-(./abstractTH.tex)
+ (./abstractTH.tex)
 LaTeX Font Info:    Font shape `TU/THSarabun(0)/b/n' will be
 (Font)              scaled to size 15.96002pt on input line 135.
 
@@ -1043,50 +1038,52 @@ File: figures/ER_Diagram.png Graphic file (type bmp)
 
 [12]
 
+[13]
+
 LaTeX Font Warning: Font shape `TU/TimesNewRoman(1)/m/n' in size <15.60004> not
  available
-(Font)              size <12> substituted on input line 217.
+(Font)              size <12> substituted on input line 221.
 
 
-
-[13]) (./chapter4.tex
 
 [14]
+
+[15]) (./chapter4.tex
+
+[16]
 CHAPTER 4.
 
 
-[15
+[17
 
 ]
-
-Package natbib Warning: Citation `aung-etal-2024-thonburian' on page 16 undefin
-ed on input line 34.
-
 File: figures/chap4/confusion_matrix.png Graphic file (type bmp)
 <figures/chap4/confusion_matrix.png>
 
 
-[16]
-
-[17]
-
-[18]) (./chapter5.tex
+[18]
 
 [19]
+
+[20]) (./chapter5.tex
+
+[21]
 CHAPTER 5.
 )
 
-[20
+[22
 
-] (./main.bbl)
+] (./main.bbl
+Underfull \hbox (badness 5403) in paragraph at lines 38--42
+[]\TU/TimesNewRoman(0)/m/n/12 ZegoCloud.  Real-time voice & video call sdk, 202
+4.  URL https://
+ []
 
-[21
+)
 
-]
+[23
 
-Package natbib Warning: There were undefined citations.
-
-
+] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -1100,12 +1097,12 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 13250 strings out of 473832
- 274697 string characters out of 5729480
- 855798 words of memory out of 5000000
- 36055 multiletter control sequences out of 15000+600000
+ 13256 strings out of 473832
+ 274847 string characters out of 5729480
+ 855945 words of memory out of 5000000
+ 36061 multiletter control sequences out of 15000+600000
  564884 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,13n,107p,1637b,595s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,13n,107p,1637b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (34 pages).
+Output written on main.pdf (36 pages).
