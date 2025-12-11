@@ -1,10 +1,54 @@
 \chapter{METHODOLOGY}
 \hspace{\parindent} 
 This section describes the methodology for developing the smart companion system for elderly care. The methodology comprises system design, data collection, pre-processing techniques, machine learning methods, hyperparameter configurations, and performance evaluation. The technical methods used in this study include speech recognition, natural language processing, sentiment analysis, and real-time video intercommunication. Each stage of the methodology is explained to ensure clarity and reproducibility.
+%================= System Design =========================================
+\section{System Design}
+{ 
+	\setlength{\leftskip}{1cm}
+	\setlength{\parindent}{2.5em}
+	The proposed smart companion system is designed to support elderly care by combining emotion recognition, real-time communication, and health monitoring. The system architecture consists of hardware (lightweight client), software application, and
+	database components that collectively deliver personalized assistance. The functional
+	diagram of the system is illustrated in Figure 3.1.
+	\par
+}
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
+	\caption{\textbf outlines the interaction between elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.}
+	\label{fig:paragraph}
+\end{figure}
+\FloatBarrier
+
+\noindent\textbf{Key Components:}
+\begin{itemize}
+	\item Tablet Application: Captures speech and visual data.
+	\item Mobile Application: Allows monitoring and communication with hardware users.
+	\item Speech Recognition: Faster Whisper model for offline, high-accuracy Thai speech recognition.
+	\item API Server: FastAPI server to handle tokenization and requests.
+	\item Local LLM: GEMMA 3 for emotion classification and dialogue generation.
+	\item Text-to-Speech: Google Text to Speech API converts the model responses into audio feedback.
+	\item Video Call System: ZegoCloud SDK for stable, low-latency video communication.
+	\item Database Systems: Firebase for user information, chat history, emotion history, reminder
+\end{itemize}
+%================= Data =========================================
+\section{Data}
+{ 
+	\setlength{\leftskip}{1cm}
+	\setlength{\parindent}{2.5em}
+	The system relies on audio and visual data collected from elderly users during natural conversations. Audio data is captured using microphones embedded in the hardware client, while visual data is captured through cameras for real-time video communication. The collected audio data is processed for speech transcription, while text data is processed for emotion recognition and conversation generation.
+	\par
+}
+\textbf{Data Processing}
+\begin{itemize}
+	\item Audio Transcription: Faster Whisper performs automatic speech recognition (ASR) to convert spoken Thai into text with high accuracy.
+	\item Text Tokenization: Transcribed user inputs are tokenized and filtered (e.g., removing non-speech artifacts) before being processed by the LLM for emotion classification and response generation.
+\end{itemize}
+%================= Method =========================================
+\section{Methods}
 %=================Care Taker App=========================================
-\section{Caretaker Application}
-\subsection{UI/UX Design}
+\subsection{Caretaker Application}
+\subsubsection{UI/UX Design}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -26,7 +70,7 @@ This section describes the methodology for developing the smart companion system
 	In the duration of the design phase, accessibility, and simplicity for users was applied, such as the user journey in the app, to ensure that the caregiver can simply use the app in every situation.
 	\par
 }
-\subsection{Frontend Implementation}
+\subsubsection{Frontend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -123,7 +167,7 @@ This section describes the methodology for developing the smart companion system
 	\end{subfigure}
 \end{figure}
 
-\subsection{Backend Implementation}
+\subsubsection{Backend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -139,8 +183,8 @@ This section describes the methodology for developing the smart companion system
 
 %=================Care Receiver App=========================================
 \newpage
-\section{Care Receiver Application}
-\subsection{UI/UX Design}
+\subsection{Care Receiver Application}
+\subsubsection{UI/UX Design}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -148,15 +192,7 @@ This section describes the methodology for developing the smart companion system
 	\par
 }
 
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
-	\caption{\textbf outlines the interaction between elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.}
-	\label{fig:paragraph}
-\end{figure}
-\FloatBarrier
-
-\subsection{Frontend Implementation}
+\subsubsection{Frontend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -177,7 +213,7 @@ This section describes the methodology for developing the smart companion system
 	
 \end{enumerate}
 
-\subsection{Backend Implementation}
+\subsubsection{Backend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
@@ -197,134 +233,165 @@ This section describes the methodology for developing the smart companion system
 
 %=================Pipe line =========================================
 \newpage
-\noindent\textbf{Key Components:}
-\begin{itemize}
-	\item Tablet Application: Captures speech and visual data.
-	\item Mobile Application: Allows monitoring and communication with hardware users.
-	\item Speech Recognition: Faster Whisper model for offline, high-accuracy Thai speech recognition.
-	\item API Server: FastAPI server to handle tokenization and requests.
-	\item Local LLM: GEMMA 3 for emotion classification and dialogue generation.
-	\item Text-to-Speech: Google Text to Speech API converts the model responses into audio feedback.
-	\item Video Call System: ZegoCloud SDK for stable, low-latency video communication.
-	\item Database Systems: Firebase for user information, chat history, emotion history, reminder
-\end{itemize}
-
-\section{Data}
-\noindent\hspace{2.2em}The system relies on audio and visual data collected from elderly users during natural conversations. Audio data is captured using microphones embedded in the hardware client, while visual data is captured through cameras for real-time video communication. The collected audio data is processed for speech transcription, while text data is processed for emotion recognition and conversation generation.\\
-\textbf{Data Processing}
-\begin{itemize}
-	\item Audio Transcription: Faster Whisper performs automatic speech recognition (ASR) to convert spoken Thai into text with high accuracy.
-	\item Text Tokenization: Transcribed user inputs are tokenized and filtered (e.g., removing non-speech artifacts) before being processed by the LLM for emotion classification and response generation.
-\end{itemize}
+\subsection{Pipe Line}
+\subsubsection{UI/UX Design}
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	The Care Receiver is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
+	\par
+}
 
 
-\section{Methods}
-\noindent\textbf{Speech Recognition - Faster Whisper}\\
-\noindent\hspace{2.2em}Faster Whisper is a reimplementation of OpenAI's Whisper model using CTranslate2, designed for high-performance inference. It provides offline, accurate Thai speech recognition without relying on external cloud services. The process involves:
-\begin{itemize}
-	\item Audio Ingestion: Accepts raw audio streams from the hardware microphone.
-	\item Voice Activity Detection (VAD): Uses WebRTCVAD to strictly filter non-speech audio.
-	\item Feature Extraction: Converts audio to log-Mel spectrograms.
-	\item Model Inference: Runs the `large-v3` model quantized to `int8\_float16` on the GPU for rapid transcription.
-	\item Post-Processing: Ensures the output is valid Thai text.
-\end{itemize}
 
-\noindent\textbf{Emotion Recognition - GEMMA 3:1b}
-\begin{itemize}
-	\item Audio Emotion Recognition: GEMMA 3 model classifies the emotion from the converted texts.
-\end{itemize}
+\subsubsection{Frontend Implementation}
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	Care receiver app is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
+	\par
+}
+\begin{enumerate}[leftmargin=2.2cm]
+	\item Flutter screens:
+	\begin{enumerate}[label=\alph*.] 
+		\item Main : Initialize Firebase and Zegucloud service, while also check for app’s log-in state
+		
+		\item Id input screen   : If the app never logged in before, redirect to this screen. This require user to input “buddy id” to pairing with the care giver app
+		
+		\item Home screen       : Display the face of the chat bot
+		
+		\item Contact screen   : Display the contact screen for manual calling.
+	\end{enumerate}
+	
+\end{enumerate}
 
-\noindent\textbf{Dialogue Generation - GEMMA 3:4b}
-\begin{itemize}
-	\item The GEMMA 3 model generates emotionally-aware conversations by combining sentiment analysis and dialogue generation.
-\end{itemize}
+\subsubsection{Backend Implementation}
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	The backend layer of the Care Receiver Application utilizes Firebase Cloud Firestore as its data store. Since Firestore provides the ability to have real-time data sync while still having a strong security. For backend, These are responsible for a core functionality:
+	\par
+}
 
-\noindent\textbf{Text-to-Speech - Google Text-to-Speech API}
-\begin{itemize}
-	\item Converts the generated text response into natural-sounding Thai speech using the Neural2 model (`th-TH-Chirp3-HD-Charon`) for a high-quality user experience.
-\end{itemize}
+\begin{enumerate}[leftmargin=2.2cm]
+	\item Service:
+	\begin{enumerate}[label=\alph*.] 
+		\item Firebase service   : Handle all Firestore database operation, include read and write on data base
+		
+		\item Zegocloud      : provide a video call service for chat bot, in order to perform a video call to caretaker or receive a call from caretaker. 
+	\end{enumerate}
+	
+\end{enumerate}
 
-\noindent\textbf{Video Call Communication - ZegoCloud}
-\begin{itemize}
-	\item ZegoCloud is used to facilitate stable, low-latency real-time video communication between elderly users and their family members, ensuring reliable connection even in fluctuating network conditions.
-\end{itemize}
-
-\noindent\textbf{Mood Summary Generation}
-\begin{itemize}
-	\item Mood Summary is summarized based on conversation data using GEMMA 3:1b and stored in Firebase database.
-\end{itemize}
-
-\noindent\textbf{Reminder System}
-\begin{itemize}
-	\item Caretakers can schedule reminders (e.g., for medication or appointments) through the mobile application. These reminders are synchronized with the backend and announced aloud by the chatbot to the elderly user at the designated time using the Text-to-Speech system.
-\end{itemize}
-
-\noindent\textbf{Caretaker Call Initiation}
-\begin{itemize}
-	\item The system allows elderly users to initiate a video call to their registered caretaker using a  voice command with intent to make a call (e.g., "Call grandchild"). Upon receiving the voice command, the chatbot facilitates the connection via the ZegoCloud SDK, enabling direct communication between the elderly user and their caretaker.
-\end{itemize}
-
-
-\section{ Database Schema}
+%================= Database Schema =========================================
+\newpage
+\section{Database Schema}
 \noindent\hspace{2.2em} 
-The system utilizes PostgreSQL for user-related data and MongoDB/Pinecone for emotion summaries and conversation as shown in Figure 3.2. The key database tables and collections are:\\
-\textbf{PostgreSQL Database (User Data)}
+The system utilizes Firebase for user-related data, emotion summaries and conversation as shown in Figure 3.2. The key database collections are: \\
+\textbf{Caregivers Collection}
 \begin{itemize}
 	\item \textbf{Users Table}
 	\begin{itemize}
-		\item user\_id (Primary Key, INT)
+		\item uid (Primary Key, Varchar)
 		\item name (VARCHAR)
 		\item age (INT)
-		\item email (VARCHAR)
+		\item gender  (string)
+		\item role  (string)
 	\end{itemize}
-\end{itemize}
-
-\noindent
-\textbf{MongoDB (Emotion Summary Storage)}
-\begin{itemize}
-	\item \textbf{Emotion Summaries Collection}
+	\vspace{0.6cm}
+	\item \textbf{buddies}
 	\begin{itemize}
-		\item \_id (Primary Key, ObjectId)
-		\item user\_id (Foreign Key, INT, references \textbf{Users(user\_id)} in PostgreSQL)
-		\item timestamp (TIMESTAMP)
-		\item mood\_summary (TEXT)
+		\item buddyID (Primary Key, Varchar)
+		\item BuddyName  (string)
+		\item name  (string)
+		\item age (INT)
+		\item gender   (string)
 	\end{itemize}
-\end{itemize}
-
-\noindent
-\textbf{MongoDB (Dialog History Storage)}
-\begin{itemize}
-	\item \textbf{Dialog History Collection}
+	\vspace{0.6cm}
+	\item \textbf{daily sessions}
 	\begin{itemize}
-		\item \_id (Primary Key, ObjectId)
-		\item user\_id (Foreign Key, INT, references \textbf{Users(user\_id)} in PostgreSQL)
-		\item timestamp (TIMESTAMP)
-		\item message (TEXT)
-		\item speaker (VARCHAR, "user" or "AI agent")
-		\item session\_id (VARCHAR)
-		\item detected\_emotion (VARCHAR)
+		\item ID  (Primary Key, Varchar)
+		\item last update   (timestamp)
+		\item date   (date)
 	\end{itemize}
-\end{itemize}
-
-\noindent
-\textbf{Pinecone (Dialog Embedding Storage)}
-\begin{itemize}
-	\item \textbf{Dialog Embedding Collection}
+	\vspace{0.6cm}
+	\item \textbf{messages }
 	\begin{itemize}
-		\item \_id (Primary Key, UUID)
-		\item dialog\_id (Foreign Key, ObjectId, references \textbf{Dialog History(\_id)} in MongoDB)
-		\item embedding (Vector)
-		\item metadata (JSON)
+		\item id   (Primary Key, Varchar)
+		\item content    (string)
+		\item emotion   (string)
+		\item is analyzed  (bool)
+		\item analyzed at (timestamp)
+		\item timestamp (timestamp)
+	\end{itemize}
+	\vspace{0.6cm}
+	\item \textbf{events}
+	\begin{itemize}
+		\item id (Primary Key, Varchar)
+		\item createdAt (timestamp)
+		\item date (timestamp)
+		\item description (string)
+		\item isAnnounced (bool)
+		\item time  (time)
+		\item title (string)
 	\end{itemize}
 \end{itemize}
 
 \begin{figure}[!htbp]
 	\centering
-	\includegraphics[width = 1.00\textwidth]{figures/ER_Diagram.png}
+	\includegraphics[width = 1.1\textwidth]{figures/Chapter3/Database.png}
 	\caption{\textbf ER-Diagram for the Database}
 	\label{fig:ER_Diagram}
 \end{figure}
 
+%=================Pipe line =========================================
+
+%\noindent\textbf{Speech Recognition - Faster Whisper}\\
+%\noindent\hspace{2.2em}Faster Whisper is a reimplementation of OpenAI's Whisper model using CTranslate2, designed for high-performance inference. It provides offline, accurate Thai speech recognition without relying on external cloud services. The process involves:
+%\begin{itemize}
+%	\item Audio Ingestion: Accepts raw audio streams from the hardware microphone.
+%	\item Voice Activity Detection (VAD): Uses WebRTCVAD to strictly filter non-speech audio.
+%	\item Feature Extraction: Converts audio to log-Mel spectrograms.
+%	\item Model Inference: Runs the `large-v3` model quantized to `int8\_float16` on the GPU for rapid transcription.
+%	\item Post-Processing: Ensures the output is valid Thai text.
+%\end{itemize}
+%
+%\noindent\textbf{Emotion Recognition - GEMMA 3:1b}
+%\begin{itemize}
+%	\item Audio Emotion Recognition: GEMMA 3 model classifies the emotion from the converted texts.
+%\end{itemize}
+%
+%\noindent\textbf{Dialogue Generation - GEMMA 3:4b}
+%\begin{itemize}
+%	\item The GEMMA 3 model generates emotionally-aware conversations by combining sentiment analysis and dialogue generation.
+%\end{itemize}
+%
+%\noindent\textbf{Text-to-Speech - Google Text-to-Speech API}
+%\begin{itemize}
+%	\item Converts the generated text response into natural-sounding Thai speech using the Neural2 model (`th-TH-Chirp3-HD-Charon`) for a high-quality user experience.
+%\end{itemize}
+%
+%\noindent\textbf{Video Call Communication - ZegoCloud}
+%\begin{itemize}
+%	\item ZegoCloud is used to facilitate stable, low-latency real-time video communication between elderly users and their family members, ensuring reliable connection even in fluctuating network conditions.
+%\end{itemize}
+%
+%\noindent\textbf{Mood Summary Generation}
+%\begin{itemize}
+%	\item Mood Summary is summarized based on conversation data using GEMMA 3:1b and stored in Firebase database.
+%\end{itemize}
+%
+%\noindent\textbf{Reminder System}
+%\begin{itemize}
+%	\item Caretakers can schedule reminders (e.g., for medication or appointments) through the mobile application. These reminders are synchronized with the backend and announced aloud by the chatbot to the elderly user at the designated time using the Text-to-Speech system.
+%\end{itemize}
+%
+%\noindent\textbf{Caretaker Call Initiation}
+%\begin{itemize}
+%	\item The system allows elderly users to initiate a video call to their registered caretaker using a  voice command with intent to make a call (e.g., "Call grandchild"). Upon receiving the voice command, the chatbot facilitates the connection via the ZegoCloud SDK, enabling direct communication between the elderly user and their caretaker.
+%\end{itemize}
+%=================Hyperparameter Configuration ==================================
+\newpage
 \section{Hyperparameter Configurations}
 \begin{itemize}
 	\item Faster Whisper (Speech-to-Text):
@@ -357,7 +424,8 @@ The system utilizes PostgreSQL for user-related data and MongoDB/Pinecone for em
 		\item Architecture: Peer-to-peer WebRTC wrapper
 	\end{itemize}
 \end{itemize}
-
+%=================Hyperparameter Configuration ==================================
+\newpage
 \section{Performance Evaluation}
 
 The performance of the smart companion system will be evaluated based on the following metrics:
