@@ -265,41 +265,26 @@ This section describes the methodology for developing the smart companion system
 	\item Contextual Formatting (for LLM): Each user input and system response is formatted with appropriate roles (user, system, assistant) and appended to the conversationHistory to maintain coherent dialogue context for the LLM.
 \end{itemize}
 
-\subsubsection{Model Development}
+\subsubsection{Large Language Model (LLM) Operations}
 \begin{itemize}
-	\item Exploratory analysis
-	\item Time-series smoothing
-	\item Simple rule-based or ML-based scoring:
-	\begin{itemize}
-		\item Moving average
-		\item Emotion variability score
-		\item Daily anomaly detection
-	\end{itemize}
-	\item Optional NLP pipeline for message sentiment
+    \item \textbf{Dialogue Generation:} The gemma3:4b model, accessed via the Ollama API, serves as the core of the chatbot, responsible for generating contextually relevant and engaging conversational responses.
+    \item \textbf{Emotion Classification:} Integrated within the LLM’s processing, the system implicitly classifies the user’s emotional state based on their transcribed input and conversational nuances.
+    \item \textbf{Persona Adherence:} The LLM’s system prompt ensures responses adhere to a predefined elderly companion persona, characterized by:
+    \begin{itemize}
+        \item Primary use of the Thai language, with English transliteration allowed when necessary only.
+        \item A casual, natural, and family-like conversational tone.
+        \item Avoidance of formal polite particles (Ka/Krub) at the end of sentences.
+        \item Emphasis on clear, concise, and easily understandable advice.
+        \item Strict adherence to a maximum response length of 6 sentences to ensure brevity for spoken output.
+    \end{itemize}
+    \item \textbf{Response Constraints:} The `num\_predict` parameter for Ollama API is set to `4096` tokens, to ensure that the model will not get stuck with just the historical context.
 \end{itemize}
 
-\subsubsection{Evaluation}
+\subsubsection{Caretaker Interaction Features}
 \begin{itemize}
-	\item Compare predicted trends vs. actual logs
-	\item Graph visualization using Matplotlib/Seaborn or FL Chart in-app
-	\item Signal detection accuracy:
-	\begin{itemize}
-		\item Stable mood
-		\item Negative trend
-		\item Sudden spikes
-	\end{itemize}
-\end{itemize}
-
-\subsubsection{Integration with App}
-\begin{itemize}
-	\item Export results back to Firebase
-	\item Visualize on caregiver analytics screen
-	\item Trigger notifications for:
-	\begin{itemize}
-		\item Unusual negative patterns
-		\item Sudden emotion drops
-		\item Extended sadness/anxiety period
-	\end{itemize}
+    \item \textbf{Mood Summary Generation:} The GEMMA 3:1b model processes conversation data to categorize a set range of emotion such as [Neutral, Happy, Relax, Sad, Pain, Anxiety, Angry] of the elderly user. These moods are stored in the Firebase database for caretaker review.
+    \item \textbf{Reminder System:} Caretakers utilize the mobile application to schedule and manage reminders (e.g., for medication times or appointments). These scheduled reminders are synchronized with the backend, and the chatbot subsequently announces them aloud to the elderly user at the designated times using the Text-to-Speech system.
+    \item \textbf{Caretaker Call Initiation:} Elderly users can directly initiate a video call to their registered caretaker through a specific voice command (e.g., “Call grandchild”). Upon detecting the user’s intent, the chatbot automatically initiates the video call connection using the ZegoCloud SDK, enabling seamless communication.
 \end{itemize}
 
 %================= Database Schema =========================================
