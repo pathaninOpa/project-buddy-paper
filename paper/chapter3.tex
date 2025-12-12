@@ -19,11 +19,7 @@ This section describes the methodology for developing the smart companion system
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
-<<<<<<< HEAD
 	\caption{\textbf System Architecture Diagram}
-=======
-	\caption{\textbf{System Architecture Overview.} This diagram outlines the interaction between the elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice responses, while the backend manages AI inference and data synchronization.}
->>>>>>> 8255fabaaf1606679ecdc57c983c04a57b42b66b
 	\label{fig:system_architecture}
 \end{figure}
 \newpage
@@ -242,44 +238,26 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 	\begin{enumerate}[leftmargin=1.2cm, label=\arabic*.]
 		\item Trigger user sign in :
 		\begin{enumerate}[label=\alph*.] 
-			\item When the user clicks the sign-in button from LoginPage.dart, the program initiates the Google authentication process by calling the function below.
+			\item When the user clicks the sign-in button from LoginPage.dart, the program initiates the Google authentication process.
 			\item If the user cancels the pop-up, the process instantly terminates to avoid null or invalid sessions.
 			\item After the authentication is successful, it will return the user credential including user.uid, user.email, and user.displayName, and Authmetadata to the LoginPage.dart
 		\end{enumerate}
-		
-\begin{figure}[!htbp]
-	\centering
-	\includegraphics[width = 0.99\textwidth]{figures/Chapter3/1.1CodeBlock.png}
-	\caption{}
-	\label{fig:1.1CodeBlock}
-\end{figure}
 		
 		\item Check user profile :
 		\begin{enumerate}[label=\alph*.] 
 			\item The backend then checks if a caregiver profile already exists in Firestore. 	This is accomplished by querying the caregivers' collection with the UID as the document identifier.
 		\end{enumerate}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width = 0.99\textwidth]{figures/Chapter3/1.2CodeBlock.png}
-		\caption{}
-		\label{fig:1.2 Code Block}
-	\end{figure}
 	
 		\item Display a pop up for first time users :
 		\begin{enumerate}[label=\alph*.] 
 			\item If no existing documents are located, the user is classified as a first-time user, and an onboarding pop-up appears to capture the essential caregiver information needed to create the profile.
 		\end{enumerate}
-	\begin{figure}[!htbp]
-		\centering
-		\includegraphics[width = 0.99\textwidth]{figures/Chapter3/1.1CodeBlock.png}
-		\caption{\textbf 1.1 Code Block}
-		\label{fig:1.3 Code Block}
-	\end{figure}
 	
 		\item Creating the Caregiver Document in the firestore :
 		\begin{enumerate}[label=\alph*.] 
 			\item After the form is completed, the data is written to Firestore under the UID (From the google authentication). Then it will proceed to the homepage.
 		\end{enumerate}
+		
 	
 		\item Reminder page :
 		\begin{enumerate}[label=\alph*.] 
@@ -318,108 +296,108 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 		\begin{enumerate}[label=\alph*.] 
 			\item When the buddy button is clicked, it will navigate to the next page, which is “Buddy detail page”, while passing the selected buddy object. If the buddy is updated and returned, the local list will be refreshed.
 		\end{enumerate}
-		
-		\item Creating the Caregiver Document in the firestore :
-		\begin{enumerate}[label=\alph*.] 
-			\item After the form is completed, the data is written to Firestore under the UID (From the google authentication). Then it will proceed to the homepage.
-		\end{enumerate}
+	\end{enumerate}
 		
 		\item\textbf{Buddy Detail Page (Navigation, and video call integration)} 
 		\\This page provides a view of the latest emotion card, video call button, reminder page navigation button, and analysis page navigation button.
-		
-		\item Page initializing :
-		\begin{enumerate}[label=\alph*.] 
-			\item When this page is being initialized, the application will immediately call the “loadLatestMood()” function to retrieve the most recent emotion of the caregiver.
+		\begin{enumerate}[label=\arabic*.] 
+			\item Page initializing :
+			\begin{enumerate}[label=\alph*.] 
+				\item When this page is being initialized, the application will immediately call the “loadLatestMood()” function to retrieve the most recent emotion of the caregiver.
+			\end{enumerate}
+			
+			\item Video call button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button initiates a video call using the ZegoSendCallInvitationButton component provided by ZegoCloud, which will be further explained in the next section.
+			\end{enumerate}
+			
+			\item Reminder button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Reminder page”, which will be further explained in the next section.
+			\end{enumerate}
+			
+			\item Analysis button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
+			\end{enumerate}
 		\end{enumerate}
 		
-		\item Video call button :
-		\begin{enumerate}[label=\alph*.] 
-			\item This button initiates a video call using the ZegoSendCallInvitationButton component provided by ZegoCloud, which will be further explained in the next section.
-		\end{enumerate}
-		
-		\item Reminder button :
-		\begin{enumerate}[label=\alph*.] 
-			\item This button will navigate the user to “Reminder page”, which will be further explained in the next section.
-		\end{enumerate}
-		
-		\item Analysis button :
-		\begin{enumerate}[label=\alph*.] 
-			\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
-		\end{enumerate}
-		
-		\item\textbf{Video Call Logic} 
+		\item\textbf{Video Call Page} 
 		\\The video call feature allows caregivers and care receivers to communicate directly and in real time. This functionality is integrated with ZegoCloud's prebuilt call UI which will be explained in this section.
 		
-		\item Pre-initialization of video call service :
-		\begin{enumerate}[label=\alph*.] 
-			\item The ZegoCloud is initialized during the authentication, to reduce the time when the caretakers want to use the video calls function. It uses the UID and user display name to register the user with the signaling system.
+		\begin{enumerate}[label=\arabic*.] 
+			\item Pre-initialization of video call service :
+			\begin{enumerate}[label=\alph*.] 
+				\item The ZegoCloud is initialized during the authentication, to reduce the time when the caretakers want to use the video calls function. It uses the UID and user display name to register the user with the signaling system.
+			\end{enumerate}
+			
+			\item Identify the care recipient :
+			\begin{enumerate}[label=\alph*.] 
+				\item Each buddy will have a unique ID as mentioned above in (2.2). This Buddy ID will be used as the identifier for ZegoCloud users of the care receiver.
+			\end{enumerate}
+			
+			\item Trigger the video call invitation :
+			\begin{enumerate}[label=\alph*.] 
+				\item As mentioned above, the application is using ZegoSendCallInvitationButton to initiate a call invitation, this button is configured to initialize the video call and target the care receiver by passing the Buddy ID and name. 
+			\end{enumerate}
+			
+			\item Video call interface :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
+			\end{enumerate}
 		\end{enumerate}
 		
-		\item Identify the care recipient :
-		\begin{enumerate}[label=\alph*.] 
-			\item Each buddy will have a unique ID as mentioned above in (2.2). This Buddy ID will be used as the identifier for ZegoCloud users of the care receiver.
-		\end{enumerate}
-		
-		\item Trigger the video call invitation :
-		\begin{enumerate}[label=\alph*.] 
-			\item As mentioned above, the application is using ZegoSendCallInvitationButton to initiate a call invitation, this button is configured to initialize the video call and target the care receiver by passing the Buddy ID and name. 
-		\end{enumerate}
-		
-		\item Video call interface :
-		\begin{enumerate}[label=\alph*.] 
-			\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
-		\end{enumerate}
-		
-		
-		\item\textbf{Reminder Backend Logic} 
+		\item\textbf{Reminder Page} 
 		\\The backend logic is focused on assigning each reminder to the right caregiver and care receiver, saving the data to Firestore, and retrieving it for display. The following section explains in detail how these operations are implemented in the system.
-		
-		\item Pre-initialization of video call serviceFlow of creating a reminder event :
-		\begin{enumerate}[label=\alph*.] 
-			\item In “Add new event page”, the caregiver will input the event title, description, date, and time. 
-			\item Once the caregiver confirms, the reminder is written to the Firestore under a path that links the collection. Each reminder is stored as a single document, as shown below.
-		\end{enumerate}
-		
-		\item Retrieving reminder for display :
-		\begin{enumerate}[label=\alph*.] 
-			\item When the Reminder Page loads, the backend gathers the reminder data from Firestore using the UID and buddy ID, and uses it to display a different reminder section in the UI. 
-			\item To categorize events into the Announced and Waiting sections, the system uses an isAnnounced boolean value to indicate the current status of each event. 
-			\item The isAnnounced default value is false but it will be changed from the server if the “Buddy chatbot” announced it. 
+		\begin{enumerate}[label=\arabic*.]
+			\item Flow of creating a reminder event :
+			\begin{enumerate}[label=\alph*.] 
+				\item In “Add new event page”, the caregiver will input the event title, description, date, and time. 
+				\item Once the caregiver confirms, the reminder is written to the Firestore under a path that links the collection. Each reminder is stored as a single document.
+			\end{enumerate}
+			
+			\item Retrieving reminder for display :
+			\begin{enumerate}[label=\alph*.] 
+				\item When the Reminder Page loads, the backend gathers the reminder data from Firestore using the UID and buddy ID, and uses it to display a different reminder section in the UI. 
+				\item To categorize events into the Announced and Waiting sections, the system uses an isAnnounced boolean value to indicate the current status of each event. 
+				\item The isAnnounced default value is false but it will be changed from the server if the “Buddy chatbot” announced it. 
+			\end{enumerate}
 		\end{enumerate}
 		
 		\item\textbf{Analytics Backend Logics} 
 		\\The analytics module is designed to assist caregivers in understanding each care receiver's emotional patterns through the use of aggregated data and visual representations. The backend functionality focuses on retrieving emotional data from Firestore, translating it into meaningful summaries, and delivering ordered results for frontend displays.
 		
-		\item Retrieve emotion messages from Firestore :
-		\begin{enumerate}[label=\alph*.] 
-			\item Reads the emotion data from “message” subcollection in firebase, which is used to store the chat. Each message includes an emotion label generated by the emotion recognition script which will run asynchronously, every 5 minutes.
-		\end{enumerate}
+		\begin{enumerate}[label=\arabic*.]
+			\item Retrieve emotion messages from Firestore :
+			\begin{enumerate}[label=\alph*.] 
+				\item Reads the emotion data from “message” subcollection in firebase, which is used to store the chat. Each message includes an emotion label generated by the emotion recognition script which will run asynchronously, every 5 minutes.
+			\end{enumerate}
 		
-		\item Filter the emotion data :
-		\begin{enumerate}[label=\alph*.] 
-			\item As the message also contains the “buddy” chatbot message log, therefore we have filtered it as we only need the care receiver emotion to calculate for the best accuracy. 
-		\end{enumerate}
+			\item Filter the emotion data :
+				\begin{enumerate}[label=\alph*.] 
+				\item As the message also contains the “buddy” chatbot message log, therefore we have filtered it as we only need the care receiver emotion to calculate for the best accuracy. 
+			\end{enumerate}
 		
-		\item Count emotion (for daily summary) :
-		\begin{enumerate}[label=\alph*.] 
-			\item To display the counted emotion, the backend count the frequency of each emotion each emotion from the filtered data above 
-		\end{enumerate}
+			\item Count emotion (for daily summary) :
+			\begin{enumerate}[label=\alph*.] 
+				\item To display the counted emotion, the backend count the frequency of each emotion each emotion from the filtered data above 
+			\end{enumerate}
 		
-		\item Detail message log :
-		\begin{enumerate}[label=\alph*.] 
-			\item This allows the caregiver to review the message, and see the cause of each emotional changes 
-		\end{enumerate}
+			\item Detail message log :
+			\begin{enumerate}[label=\alph*.] 
+				\item Displaying a detailed message log by pulling from the retrieve emotion message from firestore.
+			\end{enumerate}
 		
-		\item 4-Hour Emotion Trend :
-		\begin{enumerate}[label=\alph*.] 
-			\item Firstly, to make it plottable, each emotion is mapped to a numeric value. 
-			\item Now, group messages into a 4 hour base time bucket, which will be split into 6 buckets.
-			\item Then calculate the average score for each bucket, if the bucket has no messages, then it will return “0.0”, which is neutral. 
-			\item Plot the average as a line chart. The x-axis is the time, and the y-axis is the averaged emotion score (Range from negative to positive).
+			\item 4-Hour Emotion Trend :
+			\begin{enumerate}[label=\alph*.] 
+				\item Map emotion to a numerical value.
+				\item Group messages into a 4 hour base time bucket, which will be split into 6 buckets.
+				\item Calculate the average score for each bucket, if the bucket has no messages, then it will return “0.0”, which is neutral. 
+				\item Plot the average as a line chart. The x-axis is the time, and the y-axis is the averaged emotion score (Range from negative to positive).
+			\end{enumerate}
 		\end{enumerate}
-		
-	\end{enumerate}
 \end{enumerate}
+
 %=================Care Receiver App=========================================
 \newpage
 \subsection{Care Receiver Application}
@@ -435,11 +413,7 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-<<<<<<< HEAD
 	Care receiver app is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each  design have prioritized simplicity and accessibility of the user, to ensure that all user can use this application without need to learn a many new things to use this application at it potential. Each file is responsible or every core functionality : 
-=======
-	Care Receiver application is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
->>>>>>> 8255fabaaf1606679ecdc57c983c04a57b42b66b
 	\par
 }
 \begin{enumerate}[leftmargin=2.2cm]
