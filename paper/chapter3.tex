@@ -482,25 +482,6 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 	
 \end{enumerate}
 
-
-\newpage
-\begin{lstlisting}[caption={User Login Function}]
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-Future<UserCredential?> signInWithGoogle() async {
-	// 1. Use the instance (Singleton), not the constructor
-	final GoogleSignIn googleSignIn = GoogleSignIn.instance;
-	
-	// 2. Initialize with your Web Client ID
-	// Note: This initializes the plugin. If you call this multiple times, it might ignore subsequent calls or update config.
-	// Ideally, this should be called once in your main.dart, but it works here for simple apps.
-	await googleSignIn.initialize(
-	serverClientId: "877436752472-c4u89pkc60k7982v091gvc99gakhr9pa.apps.googleusercontent.com", 
-	);
-
-\end{lstlisting}
-
 %=================Pipe line =========================================
 \newpage
 \subsection{Interactive Conversational Pipeline (STS Pipeline)}
