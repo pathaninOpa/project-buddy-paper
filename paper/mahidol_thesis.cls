@@ -297,7 +297,7 @@ entitled\\
 }
 }
 }
-\@advSignbox{\thesisAdv, \advDegree\\Advisor}
+\@advSignbox{\thesisAdv, Ph.D.\\Advisor}
 \end{tabbing}
 %\vfill
 \end{center}
@@ -322,11 +322,11 @@ for the degree of Bachelor of Engineering (\thesisDepENG)\\
 on\\
 \thesisGradDate
 \vfill
-\noindent\@advSignbox{\Chair, \ChairDegree\\ Chair Committee}
+\noindent\@advSignbox{\Chair, Ph.D.\\ Chair Committee}
 \\[4\baselineskip]
-\noindent\@advSignbox{\committeeI, \committeeIDegree\\Committee}
+\noindent\@advSignbox{\committeeI, Ph.D.\\Committee}
 \\[4\baselineskip]
-\noindent\@advSignbox{\committeeII, \committeeIIDegree\\Comittee}
+\noindent\@advSignbox{\committeeII, Ph.D.\\Committee}
 \end{center}
 \end{spacing}
 \clearpage
@@ -636,7 +636,15 @@ E-MAIL \> \csname thesis#2AuthorEmail\endcsname
     {0.1pt}         % Lower margin of section header (cannot be 0)
     {\@secFont}     % Command before starting section title
 }
-\renewcommand\section[1]{\Xsection{#1}\setlength{\parindent}{1.6cm}} %command before starting subsection title and section content indentation
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfBooleanTF{#1}%
+    {\Xsection*{#3}}%
+    {\IfNoValueTF{#2}%
+       {\Xsection{#3}}%
+       {\Xsection[#2]{#3}}%
+    }%
+  \setlength{\parindent}{1.6cm}%
+} %command before starting subsection title and section content indentation
 
 %-------------------------------------------------
 \renewcommand*{\@seccntformat}[1]   %Space between section/subsection/subsubsection title and its number
