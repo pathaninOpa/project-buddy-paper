@@ -19,9 +19,11 @@ This section describes the methodology for developing the smart companion system
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
-	\caption{\textbf{System Architecture Overview.} This diagram outlines the interaction between the elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice responses, while the backend manages AI inference and data synchronization.}
+	\caption{\textbf System Architecture Diagram}
 	\label{fig:system_architecture}
 \end{figure}
+\newpage
+Figure \ref{fig:system_architecture} Outline the interaction between elderly application, caretaker application and backend services. the elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.
 \FloatBarrier
 
 \noindent\textbf{Key Components:}
@@ -84,14 +86,14 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	As the primary user is the caretaker who needs quick access to important information, therefore this application was designed with a focus on simplicity, and usability. The design process began with wireframing with Figma, where the layout, visual hierarchy, and user flow were all maintained by outlining each page.
+	The application was created with a heavy focus on simplicity and usability because the caregiver is the applications main user and needs quick and dependable access to important data. In order to visualize the interface structure and interaction flow early on, the design approach started with wireframing using Figma. In order to guarantee that important data could be retrieved effectively, considerable attention was paid to layout organization, visual hierarchy, and user navigation throughout this phase. To ensure uniformity throughout the application and to cut down on superfluous complexity, each page was thoroughly described, allowing caregivers to complete critical tasks with little effort and learning time.
 	\par
 }
 
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	An emotion analysis dashboard was created to provide caregivers with an easy to understand overview of the care receiver’s emotion throughout the day, a recent mood card, and chat log between care receiver and the Buddy (care receiver application). The visualization includes graphs and datacard of the emotion trends calculated by an equation implemented inside the care receiver app, which will be discussed later on. Moreover, a reminder scheduling interface was designed to allow caregivers to easily set daily reminders for the care receiver.
+	To give caregivers an easy to understand summary of the care recipient's emotional state throughout the day, an emotion analysis dashboard was created. A recent mood card, an aggregated emotion summary, and a thorough conversation log documenting exchanges between the care recipient and the Buddy app. The dashboard includes visual components like data cards and graphs that show emotion trends over time to improve interpretability. A unique equation built into the care receiver program is used to calculate these patterns, which will be covered in a later section. To assist everyday caring tasks, a reminder scheduling interface was created in addition to emotional monitoring. This interface makes it simple for caregivers to create, manage, and update reminders for the care recipient. When combined, these characteristics give caregivers useful skills and emotional insights to enable prompt and consistent treatment.
 	\par
 }
 
@@ -99,45 +101,60 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	In the duration of the design phase, accessibility, and simplicity for users was applied, such as the user journey in the app, to ensure that the caregiver can simply use the app in every situation.
+	To guarantee a seamless and intuitive user experience, accessibility and simplicity were heavily prioritized during the design phase. The application's user journey was thoughtfully designed to minimize complexity and decrease the mental strain needed to complete essential tasks. Caretakers can easily comprehend and access key functions thanks to the clear visual hierarchy, accessible font, and consistent navigation patterns used in the design of each screen and interaction. The program makes it possible for caregivers to use the system with confidence and effectiveness in a variety of scenarios by emphasizing simple processes and accessible design concepts.
 	\par
 }
 \subsubsection{Frontend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	The frontend was developed using flutter as a framework, and dart as the programming language. This application contain multiple key screen included:
+	Using Flutter as the primary framework and Dart as the programming language, the application's frontend was created. This strategy preserves a consistent user interface and interaction experience while enabling the program to function seamlessly across platforms. Several important displays make up the frontend, each of which is intended to facilitate particular user tasks and workflows. Together, these panels help users manage identification, onboarding, daily monitoring, communication, and analysis functions. This ensures that the whole experience is responsive, straightforward, and simple for caregivers to use on a regular basis.
 	\par
 }
+
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	The application's visual tone was taken into consideration in addition to its practical design. The Buddy app has a pleasant pastel color palette that combines light blue and light purple to create a serene and soothing ambiance. In a caring setting when users may already be under emotional or mental strain, this color scheme was purposefully chosen to seem cozy, welcoming, and non threatening. While preserving readability and clarity, the pastel colors soften the interface and make it feel less clinical and more friendly. The application's design strives to provide a feeling of comfort and mental safety by utilizing this subdued purple blue color scheme throughout. This way, caregivers can concentrate on providing care and keeping an eye on things without being distracted by the interface.
+	\par
+}
+
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	Each screen in the program will be thoroughly explained in the parts that follow, along with its usefulness, design considerations, and ways in which it supports the broader caregiving workflow.
+	\par
+}
+
 \begin{enumerate}[leftmargin=2.2cm]
 	\item Login page:
 	\begin{enumerate}[label=\alph*.] 
-		\item Integrates Google Sign-In by using Firebase Authentication. Moreover, after the user successfully signs in for the first time, there will be a pop up on the screen, asking a basic question of the user to get to know them better.
+		\item For a safe and easy login process, the application incorporates Firebase Authentication with Google Sign In. By enabling users to access the application with their current Google accounts, this method simplifies the authentication procedure and eliminates the need to create and maintain unique credentials. When a user successfully logs in for the first time, the system displays an onboarding pop up that asks a series of simple questions intended to collect crucial profile data and gain a deeper understanding of the person. This first interaction improves usability and engagement immediately.
 	\end{enumerate}
 	
 	\item Home page:
 	\begin{enumerate}[label=\alph*.] 
-		\item Display the buddies, and add the buddy. If the add buddy button was clicked, a new pop up would appear asking for the basic information of the care receiver that will be using this buddy to gain the basic information of the care receiver. Then, the buddy code will appear, the user can copy that code and paste it in a care receiver side to successfully connect the application.
+		\item The app allows you to add new Buddies and displays a list of current ones connected to the caregiver. When the Add Buddy button is pressed, a pop up form that requests basic information about the care receiver who will be using the Buddy application appears. This information is collected to ensure accurate identification in the system and to build a preliminary profile for the care receiver. The unique buddy code will be generated and shown on the screen following the buddy's successful creation. In order to safely connect both sides of the system, the caregiver can copy this code and provide it to the care receiver, who can then paste it into the care receiver application. A controlled and dependable pairing mechanism between caregiver and care receiver devices is ensured by this approach.
 	\end{enumerate}
 	
 	\item Buddy detail page :
 	\begin{enumerate}[label=\alph*.] 
-		\item Latest mood card, video call button, reminder button, analysis button, and information button. 
+		\item A number of essential components are displayed on the main screen to facilitate caregivers' fast and simple interaction. These include easily visible buttons for video calling, reminders, emotion analysis, and information access, as well as the most current mood card, which provides an instantaneous snapshot of the care recipient's most recent emotional state. Caregivers may check emotional updates, start contact, create reminders, view analytics, or access profile information without having to navigate across many screens thanks to the features' convenient placement and recognition. This arrangement makes it possible to carry out crucial tasks with assurance and speed, particularly in circumstances where quick reactions are required.
 	\end{enumerate}
 	
 	\item Analytics page :
 	\begin{enumerate}[label=\alph*.] 
-		\item Display an overall Emotional Snapshot, 4-Hour Emotion Trend, Emotion Counts Today, and Detail Message Log. The Overall emotional snapshot, emotional counts today, and detailed message log is retrieved directly from the firebase (some module needs the . However, the 4-Hour Emotion Trend was calculated by separating each time frame as a bucket, then calculating an average emotion score for each bucket, and finally displaying it in the line chart.
+		\item The analytics section presents selected elements to assist caregivers in comprehending the care recipient's emotional condition. These consist of a 4-Hour Emotion Trend, an Overall Emotional Snapshot, Emotion Counts Today, and a Comprehensive Message Log. The comprehensive message log, daily emotion counts, and overall emotional snapshot are all taken straight from Firebase, guaranteeing that the data displayed is current and represents the most recent exchanges. When more in depth context is required, these components enable caregivers to quickly analyze emotional trends, track the frequency of specific emotions throughout the day, and look at message level information. Additionally, the 4-Hour Emotion Trend presents the data in an easy to read line chart, giving a visual summary of how emotions evolve over time. When combined, these elements provide both high level insights and specific information, assisting caregivers in making quicker and more informed decisions.
 	\end{enumerate}
 	
 	\item Reminder page :
 	\begin{enumerate}[label=\alph*.] 
-		\item Display the calendar card, announced card, waiting card, and add a reminder button. If the add reminder button has been clicked, it will go to the next page which is the “Add new event” page, where the user can fill the event title, description, date, time, and save the event. 
+		\item A calendar card, an announced card, a waiting card, and an Add Reminder button are among the essential components that the reminder screen shows to assist caregivers in efficiently managing planned activities. These cards give a concise summary of scheduled events, previously announced reminders, and pending ones. The user is directed to a special Add New Event page when they click the Add Reminder button. Before saving the reminder, the caregiver can input the event's title, description, date, and time on this page. Caregivers may rapidly generate and manage reminders without needless steps thanks to this simple and easy to follow approach, which also ensures that crucial information is accurately captured. 
 	\end{enumerate}
 	
 	\item Video call UI :
 	\begin{enumerate}[label=\alph*.] 
-		\item After the video call button has been triggered, the ZegoCloud video call UI will automatically appear, which will allow the user to communicate via video calling.
+		\item The ZegoCloud video call interface shows on the screen automatically when the video call button is pressed. With no further setup on the part of the user, this interface enables real time video calling between the caregiver and the care recipient. Users can initiate a video call fast and effortlessly thanks to the application's seamless transition to the call interface. This feature facilitates direct, actual interaction, which helps caregivers maintain a more immediate and intimate connection with care receiver
 	\end{enumerate}
 	
 \end{enumerate}
@@ -203,14 +220,182 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	The Care Receiver is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
+	The Buddy application's backend has been designed to combine many services into a unified system that facilitates insightful analysis, safe data management, and real-time communication. The primary backend platform is Firebase, which manages database functions, authentication, and real time data synchronization between the machine learning pipeline, caregiver application, and care receiver application. To enable safe access and real-time video communication, additional services like Google Authentication and ZegoCloud are incorporated. These elements work together to create a responsive and scalable backend architecture that facilitates dependable system behavior and smooth data flow.
 	\par
 }
 
+{ 
+	\setlength{\leftskip}{1.8cm}
+	\setlength{\parindent}{5em}
+	To demonstrate how the backend architecture is used within the application, the next sections provide a detailed, page by page explanation of the implementation. Each topic focuses on the functionality that runs behind the user interface, starting with user authentication and initial account setup and progressing to add new buddies and data synchronization with Firestore. The next sections demonstrate how to implement essential features like video calling, module navigation, emotion analytics, and reminder management. Particular code samples will be provided where applicable to show how various components work together and how backend procedures support overall system functionality.
+	\par
+	}
 \begin{enumerate}[leftmargin=2.2cm]
-	\item Google Authentication: To ensure a reliable and secure sign in.
-	\item Firestore: To store, and update real time data.
-	\item Zegocloud: To handle a real time video call
+	\item\textbf{Login page (Authentication and Initial User Setup)} 
+	\\The login setup is responsible for securely authenticating the user and preparing their account information in Firestore before they can use the application's core features. Authentication in this project is performed by Google Sign-In via Firebase Authentication, and the backend logic follows the steps listed below.
+
+
+	\begin{enumerate}[leftmargin=1.2cm, label=\arabic*.]
+		\item Trigger user sign in :
+		\begin{enumerate}[label=\alph*.] 
+			\item When the user clicks the sign-in button from LoginPage.dart, the program initiates the Google authentication process.
+			\item If the user cancels the pop-up, the process instantly terminates to avoid null or invalid sessions.
+			\item After the authentication is successful, it will return the user credential including user.uid, user.email, and user.displayName, and Authmetadata to the LoginPage.dart
+		\end{enumerate}
+		
+		\item Check user profile :
+		\begin{enumerate}[label=\alph*.] 
+			\item The backend then checks if a caregiver profile already exists in Firestore. 	This is accomplished by querying the caregivers' collection with the UID as the document identifier.
+		\end{enumerate}
+	
+		\item Display a pop up for first time users :
+		\begin{enumerate}[label=\alph*.] 
+			\item If no existing documents are located, the user is classified as a first-time user, and an onboarding pop-up appears to capture the essential caregiver information needed to create the profile.
+		\end{enumerate}
+	
+		\item Creating the Caregiver Document in the firestore :
+		\begin{enumerate}[label=\alph*.] 
+			\item After the form is completed, the data is written to Firestore under the UID (From the google authentication). Then it will proceed to the homepage.
+		\end{enumerate}
+		
+	
+		\item Reminder page :
+		\begin{enumerate}[label=\alph*.] 
+			\item A calendar card, an announced card, a waiting card, and an Add Reminder button are among the essential components that the reminder screen shows to assist caregivers in efficiently managing planned activities. These cards give a concise summary of scheduled events, previously announced reminders, and pending ones. The user is directed to a special Add New Event page when they click the Add Reminder button. Before saving the reminder, the caregiver can input the event's title, description, date, and time on this page. Caregivers may rapidly generate and manage reminders without needless steps thanks to this simple and easy to follow approach, which also ensures that crucial information is accurately captured. 
+		\end{enumerate}
+	
+		\item Video call UI :
+		\begin{enumerate}[label=\alph*.] 
+			\item The ZegoCloud video call interface shows on the screen automatically when the video call button is pressed. With no further setup on the part of the user, this interface enables real time video calling between the caregiver and the care recipient. Users can initiate a video call fast and effortlessly thanks to the application's seamless transition to the call interface. This feature facilitates direct, actual interaction, which helps caregivers maintain a more immediate and intimate connection with care receiver
+		\end{enumerate}
+	
+	\end{enumerate}
+	
+	\item\textbf{Homepage (Add Buddy Logic and Firestore Patching)} 
+	\\The Buddy Home Page is the main page of the app, which will include the connected buddies, and adding new buddies.
+	
+	\begin{enumerate}[leftmargin=1.2cm, label=\arabic*.]
+		
+		\item Load caregiver profile from firestore :
+		\begin{enumerate}[label=\alph*.] 
+			\item To display the caretaker’s name, and the connected buddies. Buddies are stored as a subcollection under the caregiver documents “caregivers/{uid}/buddies”.
+		\end{enumerate}
+		
+		\item Add buddy flow :
+		\begin{enumerate}[label=\alph*.] 
+			\item When the add buddy tiles icon is clicked, the \_addBuddy() will be triggered. Then the pop up will be visible for the user to add general information about the care receiver.
+			\item After the form is confirmed, the system will generate a Buddy ID using the current timestamp, which will be used as the document ID in firestore.
+			
+			\item Next the application will then create a new document under “caregivers/{uid}/buddies/{buddyId}”, then store all of the information that the user filled in the form into the firebase.
+			\item Now, after the information has successfully written into the firebase the buddy id will be visible for the user to connect the caretaker apps with the care receiver application.
+			\item Now, after the information has successfully written into the firebase the buddy id will be visible for the user to connect the caretaker apps with the care receiver application.
+			\item Finally, the new added buddy will be added into the local buddies list instantly, so the ui will be updated instantly and doesn't need to refresh the page.
+		\end{enumerate}
+		
+		\item Buddy selection :
+		\begin{enumerate}[label=\alph*.] 
+			\item When the buddy button is clicked, it will navigate to the next page, which is “Buddy detail page”, while passing the selected buddy object. If the buddy is updated and returned, the local list will be refreshed.
+		\end{enumerate}
+	\end{enumerate}
+		
+		\item\textbf{Buddy Detail Page (Navigation, and video call integration)} 
+		\\This page provides a view of the latest emotion card, video call button, reminder page navigation button, and analysis page navigation button.
+		\begin{enumerate}[label=\arabic*.] 
+			\item Page initializing :
+			\begin{enumerate}[label=\alph*.] 
+				\item When this page is being initialized, the application will immediately call the “loadLatestMood()” function to retrieve the most recent emotion of the caregiver.
+			\end{enumerate}
+			
+			\item Video call button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button initiates a video call using the ZegoSendCallInvitationButton component provided by ZegoCloud, which will be further explained in the next section.
+			\end{enumerate}
+			
+			\item Reminder button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Reminder page”, which will be further explained in the next section.
+			\end{enumerate}
+			
+			\item Analysis button :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
+			\end{enumerate}
+		\end{enumerate}
+		
+		\item\textbf{Video Call Page} 
+		\\The video call feature allows caregivers and care receivers to communicate directly and in real time. This functionality is integrated with ZegoCloud's prebuilt call UI which will be explained in this section.
+		
+		\begin{enumerate}[label=\arabic*.] 
+			\item Pre-initialization of video call service :
+			\begin{enumerate}[label=\alph*.] 
+				\item The ZegoCloud is initialized during the authentication, to reduce the time when the caretakers want to use the video calls function. It uses the UID and user display name to register the user with the signaling system.
+			\end{enumerate}
+			
+			\item Identify the care recipient :
+			\begin{enumerate}[label=\alph*.] 
+				\item Each buddy will have a unique ID as mentioned above in (2.2). This Buddy ID will be used as the identifier for ZegoCloud users of the care receiver.
+			\end{enumerate}
+			
+			\item Trigger the video call invitation :
+			\begin{enumerate}[label=\alph*.] 
+				\item As mentioned above, the application is using ZegoSendCallInvitationButton to initiate a call invitation, this button is configured to initialize the video call and target the care receiver by passing the Buddy ID and name. 
+			\end{enumerate}
+			
+			\item Video call interface :
+			\begin{enumerate}[label=\alph*.] 
+				\item This button will navigate the user to “Analysis page”, which will be further explained in the next section.
+			\end{enumerate}
+		\end{enumerate}
+		
+		\item\textbf{Reminder Page} 
+		\\The backend logic is focused on assigning each reminder to the right caregiver and care receiver, saving the data to Firestore, and retrieving it for display. The following section explains in detail how these operations are implemented in the system.
+		\begin{enumerate}[label=\arabic*.]
+			\item Flow of creating a reminder event :
+			\begin{enumerate}[label=\alph*.] 
+				\item In “Add new event page”, the caregiver will input the event title, description, date, and time. 
+				\item Once the caregiver confirms, the reminder is written to the Firestore under a path that links the collection. Each reminder is stored as a single document.
+			\end{enumerate}
+			
+			\item Retrieving reminder for display :
+			\begin{enumerate}[label=\alph*.] 
+				\item When the Reminder Page loads, the backend gathers the reminder data from Firestore using the UID and buddy ID, and uses it to display a different reminder section in the UI. 
+				\item To categorize events into the Announced and Waiting sections, the system uses an isAnnounced boolean value to indicate the current status of each event. 
+				\item The isAnnounced default value is false but it will be changed from the server if the “Buddy chatbot” announced it. 
+			\end{enumerate}
+		\end{enumerate}
+		
+		\item\textbf{Analytics Backend Logics} 
+		\\The analytics module is designed to assist caregivers in understanding each care receiver's emotional patterns through the use of aggregated data and visual representations. The backend functionality focuses on retrieving emotional data from Firestore, translating it into meaningful summaries, and delivering ordered results for frontend displays.
+		
+		\begin{enumerate}[label=\arabic*.]
+			\item Retrieve emotion messages from Firestore :
+			\begin{enumerate}[label=\alph*.] 
+				\item Reads the emotion data from “message” subcollection in firebase, which is used to store the chat. Each message includes an emotion label generated by the emotion recognition script which will run asynchronously, every 5 minutes.
+			\end{enumerate}
+		
+			\item Filter the emotion data :
+				\begin{enumerate}[label=\alph*.] 
+				\item As the message also contains the “buddy” chatbot message log, therefore we have filtered it as we only need the care receiver emotion to calculate for the best accuracy. 
+			\end{enumerate}
+		
+			\item Count emotion (for daily summary) :
+			\begin{enumerate}[label=\alph*.] 
+				\item To display the counted emotion, the backend count the frequency of each emotion each emotion from the filtered data above 
+			\end{enumerate}
+		
+			\item Detail message log :
+			\begin{enumerate}[label=\alph*.] 
+				\item Displaying a detailed message log by pulling from the retrieve emotion message from firestore.
+			\end{enumerate}
+		
+			\item 4-Hour Emotion Trend :
+			\begin{enumerate}[label=\alph*.] 
+				\item Map emotion to a numerical value.
+				\item Group messages into a 4 hour base time bucket, which will be split into 6 buckets.
+				\item Calculate the average score for each bucket, if the bucket has no messages, then it will return “0.0”, which is neutral. 
+				\item Plot the average as a line chart. The x-axis is the time, and the y-axis is the averaged emotion score (Range from negative to positive).
+			\end{enumerate}
+		\end{enumerate}
 \end{enumerate}
 
 %=================Care Receiver App=========================================
@@ -228,20 +413,20 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	Care Receiver application is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
+	Care receiver app is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each  design have prioritized simplicity and accessibility of the user, to ensure that all user can use this application without need to learn a many new things to use this application at it potential. Each file is responsible or every core functionality : 
 	\par
 }
 \begin{enumerate}[leftmargin=2.2cm]
 	\item Flutter screens:
 	\begin{enumerate}[label=\alph*.] 
-		\item Main : This file is call when app is initialize, It's purpose it to provide application the initialize of Zegucloud, for voice and video call, Offline push certificate, and the initialize of Firebase, for data base service
+		\item Main : This file is call when app is initialize, It's purpose it to provide application the initialize of Zegocloud, for voice and video call, Offline push certificate, and the initialize of Firebase, for data base service
 		
-		\item Id input screen   : When user open app for first time, The app will force to redirect to this screen first to initiate the pairing function (Figure ). By pairing it's mean the user need to provide the system  buddy ID, which was create by Care Taker app, In order to let the care receiver app to retrieve 
-		buddy attribute from Firestore Database. When the buddy ID match the existing value in the collection, the application will show a confirmation box, which include name , age and gender of the elderly. If the pairing success , application navigate to Home screen and toggle the application's log-in state. If not, The error massage will be shown.
+		\item Id input screen   : When user open app for first time, The app will force to redirect to this screen first to initiate the pairing function (Figure 3.4 ). By pairing it's mean the user need to provide the system  buddy ID, which was create by Care Taker app, In order to let the care receiver app to retrieve 
+		buddy attribute from Firestore Database. When the buddy ID match the existing value in the collection, the application will show a confirmation box (Figure 3.5), which include name , age and gender of the elderly. If the pairing success , application navigate to Home screen and toggle the application's log-in state. If not, The error massage will be shown.
 		
-		\item Home screen       : This screen's purpose is to display the face of the chat bot as in figure 3.8 . While also provide microphone permission, use to receive an in put for the Chat bot pipeline. This process can be done in both automatically by saying "เจ้าบัดดี้" or by pressing the microphone icon button on the button center of the screen to initialize conversation with buddy. Next component is the sign out button that use to cancel pairing between Care Taker and Care receiver app, and then lead user back to Id input screen to perform the pairing process again. The last component in this screen  is the video call button on the upper right corner. This button will navigate user to Contact screen.
+		\item Home screen       : This screen's purpose is to display the face of the chat bot (figure 3.6). While also provide microphone permission, use to receive an in put for the Chat bot pipeline. This process can be done in both automatically by saying "Jao Buddy" or by pressing the microphone icon button on the button center of the screen to initialize conversation with buddy. After a chat bot receive a input, At the moment chat bot is processing, chat bot cheek glow pink to indicate that it's processing. Next component is the sign out button that use to cancel pairing between Care Taker and Care receiver app, and then lead user back to Id input screen to perform the pairing process again. The last component in this screen  is the video call button on the upper right corner. This button will navigate user to Contact screen.
 		
-		\item Contact screen   : In this screen It provide a button or a function for a Chat bot to send a video call request to a pairing care taker, implementing a Zegucloud's he Voice and Video Call service. With a addition of Zegucloud 's Offline push certificate configuration, it enable the application to communicate to the other side even when the receiver side's application is close. On the other case, if user want to call to care taker manually, it can also be done the already implement button the contact screen. In both case, this application can only make a call to only pairing care taker app, because care receiver app has a permission to retrieve only the pairing care taker data.
+		\item Contact screen   : In this screen It provide a button or a function for a Chat bot to send a video call request to a pairing care taker, implementing a Zegocloud's he Voice and Video Call service. With a addition of Zegocloud 's Offline push certificate configuration, it enable the application to communicate to the other side even when the receiver side's application is close. On the other case, if user want to call to care taker manually, it can also be done the already implement button the contact screen. In both case, this application can only make a call to only pairing care taker app (figure 3.7), because care receiver app has a permission to retrieve only the pairing care taker data.
 	\end{enumerate}
 	
 \end{enumerate}
@@ -254,20 +439,45 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 \end{figure}
 \FloatBarrier
 
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 0.8\textwidth]{figures/Chapter3/CareReceiverConfirmBox.png}
+	\caption{\textbf{Care Receiver ID input screen}}
+	\label{fig:InputConfirmBox}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 0.8\textwidth]{figures/Chapter3/CareReceiverHome.png}
+	\caption{\textbf{Care Receiver Home}}
+	\label{fig:HomeScreen}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 0.8\textwidth]{figures/Chapter3/CareReceiverContact.png}
+	\caption{\textbf{Care Receiver Contact}}
+	\label{fig:ContactScreen}
+\end{figure}
+\FloatBarrier
+
 \subsubsection{Backend Implementation}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	The backend layer of the Care Receiver Application utilizes Firebase Cloud Firestore as its data store. Since Firestore provides the ability to have real-time data sync while still having a strong security. For backend, These are responsible for a core functionality:
+	The backend layer of the Care Receiver Application utilizes Firebase Cloud Firestore as its data store. Since Firestore provides the ability to have real-time data synchronize across devices, while maintaining robust security through granular access rules. Regarding the backend logic, These are responsible for a core functionality:
 	\par
 }
 
-\begin{enumerate}[leftmargin=2.2cm]
+\newpage
+\begin{enumerate}[leftmargin=1.2cm]
 	\item Service:
 	\begin{enumerate}[label=\alph*.] 
-		\item Firebase service   : Handle all Firestore database operation, include read and write on data base
+		\item Firebase service   : Firebase's Firestore is a flexible and scalable NoSQL cloud database service, provide a ability to synchronize data across client application, it's also provide offline support a mobile and web application without causing any network latency or internet connective. This service provide an application ability to use a data base inference operation.  
 		
-		\item Zegocloud      : provide a video call service for chat bot, in order to perform a video call to caretaker or receive a call from caretaker. 
+		\item Zegocloud      : Is a cloud service provider , which some function of this application have been implement from. The most important function that implement from Zegocloud is  a video call function. In this application, Zegucloud is selected because it is capable with Flutter, and it's also work well with Firebase, which have been use for this application Database system.
 	\end{enumerate}
 	
 \end{enumerate}
