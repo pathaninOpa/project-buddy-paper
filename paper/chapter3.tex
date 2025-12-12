@@ -6,30 +6,34 @@ This section describes the methodology for developing the smart companion system
 { 
 	\setlength{\leftskip}{1cm}
 	\setlength{\parindent}{2.5em}
-	The proposed smart companion system is designed to support elderly care by combining emotion recognition, real-time communication, and health monitoring. The system architecture consists of hardware (lightweight client), software application, and
-	database components that collectively deliver personalized assistance. The functional
-	diagram of the system is illustrated in Figure 3.1.
+	The proposed smart companion system is designed to support elderly care by facilitating real-time emotional engagement, health monitoring, and seamless communication. The system architecture, illustrated in Figure 3.1, functions as a distributed ecosystem connecting the \textbf{Elderly User}, \textbf{Caretaker}, and \textbf{Cloud Backend}. The interaction begins with the \textbf{Tablet Application}, which captures the elderly user's voice and transmits it via API requests to a high-performance \textbf{gRPC server running on Google Compute Engine (GCE)}.
+	\par
+}
+{ 
+	\setlength{\leftskip}{1cm}
+	\setlength{\parindent}{2.5em}
+	Within this GCE infrastructure, the pipeline splits into synchronous and asynchronous flows. The synchronous path handles immediate interaction: \textbf{Local Faster-Whisper} transcribes speech to text, which is then processed by the \textbf{Local LLM Server (Gemma 3:4b on Ollama)} to generate a response. This response is converted to audio via \textbf{Google TTS} and streamed back to the tablet as a bot voice. Parallel to this, the transcribed text is routed to a dedicated \textbf{Sentiment Analysis} module (utilizing \textbf{gemma3:1b}). As shown by the green data flow in Figure 3.1, this module independently analyzes the text and uploads the results to the \textbf{Firebase Database}. The \textbf{Caretaker Mobile Application} connects to this ecosystem to fetch these sentiment results for the dashboard, schedule reminders (stored in Firebase and retrieved by the Tablet), and initiate \textbf{WebRTC Video Calls} directly with the tablet.
 	\par
 }
 
 \begin{figure}[!htbp]
 	\centering
 	\includegraphics[width = 0.99\textwidth]{figures/BuddySystemFlowPic.png}
-	\caption{\textbf outlines the interaction between elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.}
-	\label{fig:paragraph}
+	\caption{\textbf{System Architecture Overview.} This diagram outlines the interaction between the elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice responses, while the backend manages AI inference and data synchronization.}
+	\label{fig:system_architecture}
 \end{figure}
 \FloatBarrier
 
 \noindent\textbf{Key Components:}
 \begin{itemize}
-	\item Tablet Application: Captures speech and visual data.
-	\item Mobile Application: Allows monitoring and communication with hardware users.
-	\item Speech Recognition: Faster Whisper model for offline, high-accuracy Thai speech recognition.
-	\item API Server: FastAPI server to handle tokenization and requests.
-	\item Local LLM: GEMMA 3 for emotion classification and dialogue generation.
-	\item Text-to-Speech: Google Text to Speech API converts the model responses into audio feedback.
-	\item Video Call System: ZegoCloud SDK for stable, low-latency video communication.
-	\item Database Systems: Firebase for user information, chat history, emotion history, reminder
+	\item \textbf{Care Receiver Application (Tablet):} The primary interface for the elderly user, responsible for audio capture, visual display, and executing local commands.
+	\item \textbf{Caregiver Application (Mobile):} A monitoring dashboard allowing family members to view mood logs, schedule reminders, and initiate video calls.
+	\item \textbf{Speech Recognition Engine:} Utilizes the \textbf{Faster Whisper} model for high-accuracy, offline Thai speech transcription.
+	\item \textbf{AI Inference Server:} A Python-based backend (FastAPI/gRPC) that handles tokenization, context management, and model execution.
+	\item \textbf{Large Language Model (LLM):} \textbf{GEMMA 3:4b} serves as the conversational core, while \textbf{GEMMA 3:1b} handles periodic emotion classification.
+	\item \textbf{Text-to-Speech (TTS):} The \textbf{Google Text-to-Speech API} converts generated text into natural-sounding Thai speech.
+	\item \textbf{Video Call System:} Integrated via the \textbf{ZegoCloud SDK} to provide stable, low-latency video communication.
+	\item \textbf{Database Systems:} A cloud storage solution using \textbf{Firebase} for real-time user data/reminders for extensive chat logs.
 \end{itemize}
 %================= Data =========================================
 \section{Data}
@@ -183,12 +187,12 @@ This section describes the methodology for developing the smart companion system
 
 %=================Care Receiver App=========================================
 \newpage
-\subsection{Elderly Application}
+\subsection{Care Receiver Application}
 \subsubsection{UI/UX Design}
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	The elderly application is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
+	The Care Receiver application is designed with an elderly user in mind, focusing on simplicity and functionality. The home page is the heart of this application, elderly users will spend most of their time with this page. Therefore, the Home page design includes a face with an approachable smile. This design’s purpose is to encourage users to use the app. This screen also includes a button with corresponding icon for its function.
 	\par
 }
 
@@ -196,7 +200,7 @@ This section describes the methodology for developing the smart companion system
 { 
 	\setlength{\leftskip}{1.8cm}
 	\setlength{\parindent}{5em}
-	Care receiver app is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
+	Care Receiver application is developed using a Flutter framework, to allow cross-platform development and to make a flexible UI for the application. This application’s frontend consist of several dart files, each responsible  for a core functionality:
 	\par
 }
 \begin{enumerate}[leftmargin=2.2cm]
@@ -233,58 +237,102 @@ This section describes the methodology for developing the smart companion system
 
 %=================Pipe line =========================================
 \newpage
-\subsection{Chatbot pipeline: Data  Flow and Processing}
+\subsection{Interactive Conversational Pipeline (STS Pipeline)}
 { 
 	\setlength{\leftskip}{1cm}
 	\setlength{\parindent}{2.5em}
-	This section Tells the Data flow and processing within the shared board pipeline, from raw input ingestion to generated responses and caretaker insights, reflecting the implemented system architecture and code.
+	The system operates as a continuous cognitive loop comprising three subsystems: Perception, Cognition (Generative Core), and Actuation. This Speech-to-Speech (STS) pipeline, illustrated in Figure 3.1, ensures a natural and responsive interaction flow.
 	\par
 }
 
-\subsubsection{Data Collection and Ingestion}
+\subsubsection{Subsystem A: Multimodal Perception (The Ears)}
+The Multimodal Perception subsystem serves as the sensory interface of the Buddy chatbot, tasked with bridging the physical and digital domains. Its primary objective is to transmit continuous, unstructured acoustic signals into discrete, semantically rich linguistic tokens that the downstream cognitive engine can process. Given the deployment context, for example, an elderly user's home, this subsystem must be robust against environmental challenges such as background noise (e.g., television, ambient chatter) and room reverberation. To achieve both high accuracy and computational efficiency on edge hardware, the architecture implements a three-tier processing cascade: an always-on low-power wake word detector, a spectral-based voice activity filter, and a high-fidelity Transformer-based transcription engine. This tiered approach ensures that heavy inference resources are only allocated when communicative intent is explicitly verified, optimizing the trade-off between responsiveness and power consumption.
+\begin{itemize}
+    \item \textbf{Wake Word Detection:} To optimize power consumption and privacy, the system remains in a low-power idle state until triggered by the \textbf{Picovoice Porcupine} wake word engine, which listens specifically for the keyword "Jao Buddy" (Hey Buddy) on the edge device.
+	\item \textbf{Audio Ingestion \& Voice Activity Detection (VAD):} Once the wake word is detected
+	raw
+	audio streams are captured from the microphone in 20-30ms frames ($x_n$). To filter out background 
+	noise, a \textbf{WebRTCVAD} module processes these frames. The algorithm models the spectral energy
+	of speech ($S$) and noise ($N$) using Gaussian Mixture Models (GMM). For each frame, it computes th
+	log-likelihood ratio $\Lambda(x_n)$ to make a binary decision:
+	\begin{equation}
+	\Lambda(x_n) = \log \left( \frac{P(x_n | S)}{P(x_n | N)} \right) \gtrless \tau
+	\end{equation}
+	where $\tau$ is the decision threshold determined by the aggressiveness mode (Mode 1). If $\
+	Lambda(x_n) > \tau$, the frame is classified as speech and passed to the transcription buffer; 
+	otherwise, it is discarded as silence, significantly reducing the computational load on the 
+	Transformer model.
+	
+	\item \textbf{Transcription (Transformer-based ASR):} The core transcription is handled by the 
+	\textbf{Faster Whisper} model, a highly optimized implementation of OpenAI's Whisper, chosen for it
+	accuracy and efficiency in Thai.
 	\begin{itemize}
-		\item Audio Input: Raw audio streams are continuously captured from the hardware client's microphone.
-		\item Transcription: Faster Whisper model processes the captured audio to accurately transcribe spoken Thai into text (transcribedText). This text forms the primary input for the conversational agent.
-		\item Conversation History: The transcribed user utterances, along with the chatbot's previous responses, are maintained as a dynamic conversation history for the Large Language Model to ensure contextual understanding.
-		\item Emotion Logs: Emotion classifications (detectedEmotion) are inferred by the LLM (specifically GEMMA 3:1b, as detailed in Section 3.3 Methods) for each relevant turn of the conversation.
-		\item Local LLM: GEMMA 3 for emotion classification and dialogue generation.
-		\item Metadata Collection: Timestamps and unique session IDs are automatically associated with each interaction and data point for logging and analysis.
-		\item Data Storage: User information is stored in PostgreSQL. Raw chat history (including transcribed text, detected emotions, timestamps, and session IDs) is stored in MongoDB for dialog history, and corresponding dialog embeddings are managed in Pinecone. Mood summaries derived from conversations are stored in Firebase.
+	\item \textbf{Architecture:} Whisper utilizes a Sequence-to-Sequence (Seq2Seq) Transformer 
+	architecture. The input audio is first converted into a \textbf{log-Mel spectrogram}, a 
+	two-dimensional representation that captures the spectral characteristics of sound over time.
+	\item \textbf{Encoder-Decoder Mechanism:} The          's Encoder processes this spectrogra
+	Transformer
+	extracting robust acoustic features (phonemes, prosody). The Decoder then generates the text 
+	transcription, predicting the probability of each subsequent text token based on the encoded acoust
+	features and the previously generated tokens.
+	\item \textbf{Optimization \& Quantization:} The "Faster" aspect comes from leveraging 
+	\textbf{CTranslate2}, an inference engine that applies \textbf{8-bit integer quantization (int8)} t
+	the model weights. This compression technique reduces the model's memory footprint and bandwidth 
+	requirements. Consequently, the entire Transformer model can execute up to 4 times faster on 
+	general-purpose hardware (like the GPU of the Raspberry Pi) compared to the original FP32 
+	implementation, with negligible degradation in Word Error Rate (WER) for the target language.
 	\end{itemize}
-\newpage
-\subsubsection{Data Preprocessing and Contextualization}
-\begin{itemize}
-	\item Audio Input: Raw audio streams are continuously captured from the hardware client's microphone.
-	\begin{itemize}
-		\item High-pass filtering (cutoff at 100 Hz) to remove low-frequency background noise.
-		\item Normalization (target RMS 0.1) to standardize audio amplitude.
-		\item Voice Activity Detection (WebRTCVAD Mode 1) to accurately identify and isolate speech segments from silence.
-		\end{itemize}
-	\item Language Filtering (for STT): Transcribed text is subjected to a language probability check to ensure it predominantly contains Thai characters, minimizing the impact of potential transcription errors of hallucinations.
-	\item Text Tokenization (for LLM): Transcribed user inputs are tokenized and, if necessary, further filtered to prepare them for efficient processing by the LLM.
-	\item Contextual Formatting (for LLM): Each user input and system response is formatted with appropriate roles (user, system, assistant) and appended to the conversationHistory to maintain coherent dialogue context for the LLM.
+	\item \textbf{Text Normalization:} To mitigate hallucinations common in Transformer-based ASR during periods of 
+	silence or background noise, the raw transcription $T$ is subjected to a linguistic validation filter. A language
+	probability score $P_{\text{Thai}}(T)$ is computed as the ratio of valid Thai characters to the total character 
+	count $N$:
+	\begin{equation}
+		P_{\text{Thai}}(T) = \frac{1}{N} \sum_{i=1}^{N} \mathbb{I}(c_i \in \mathcal{C}_{\text{Thai}})
+	\end{equation}
+	where $\mathcal{C}_{\text{Thai}}$ represents the Unicode range for Thai characters (U+0E00 to U+0E7F) and 
+	$\mathbb{I}$ is the indicator function. The text is only accepted into the context window if $P_{\text{Thai}}(T) 
+	\lambda$ (with $\lambda=0.5$), effectively filtering out non-speech artifacts and random English sentences noise.
 \end{itemize}
 
-\subsubsection{Large Language Model (LLM) Operations}
+\subsubsection{Subsystem B: Generative Cognition \& Reasoning (The Brain)}
+This subsystem embodies the core intelligence of the Buddy robot, translating processed linguistic input into contextually relevant responses and purposeful actions. It operates through a sophisticated, multi-stage algorithmic process.
+
+\paragraph{Stage I: State Construction \& Vectorization (Contextual Memory)}
+Upon receiving transcribed text frames via \textbf{gRPC}, the system reconstructs the conversational state for the Large Language Model. To maintain coherence across turns without exceeding the model's token limit, a sliding window mechanism is employed. For any given turn $t$, the input context vector $C_t$ is formally defined as:
+\begin{equation}
+    C_t = S \oplus H_{t-k:t-1} \oplus U_t
+\end{equation}
+Where:
 \begin{itemize}
-    \item \textbf{Dialogue Generation:} The gemma3:4b model, accessed via the Ollama API, serves as the core of the chatbot, responsible for generating contextually relevant and engaging conversational responses.
-    \item \textbf{Emotion Classification:} Integrated within the LLM’s processing, the system implicitly classifies the user’s emotional state based on their transcribed input and conversational nuances.
-    \item \textbf{Persona Adherence:} The LLM’s system prompt ensures responses adhere to a predefined elderly companion persona, characterized by:
+    \item $S$ represents the immutable system persona instructions (e.g., "You are Buddy, an AI assistant for the elderly..."), guiding the model's overall behavior.
+    \item $H_{t-k:t-1}$ denotes the sliding window history of the last $k$ conversational turns (where $k$ is dynamically determined but capped at 4096 tokens to fit the GEMMA 3:4b architecture's context window, utilizing techniques like Rotary Positional Embeddings or RoPE for sequence awareness).
+    \item $U_t$ is the current user utterance, the immediate input requiring a response or action.
+\end{itemize}
+
+\paragraph{Stage II: Semantic Routing \& Intent Recognition (Decision Engine)}
+Once the context $C_t$ is established, the \textbf{gemma3:4b} model functions as a semantic router, assessing the user's intent to determine if a specific external function (Tool Calling) is required or if a natural language response is sufficient. The system evaluates the probability $P$ of a reserved tool-trigger token against a predefined schema of available tools $\mathcal{T} = \{T_{reminder}, T_{call}\}$. The decision logic for the model's subsequent action is formally governed by:
+\begin{equation}
+    \text{Action}_t = \begin{cases} 
+    \text{Execute } T_i & \text{if } \text{argmax}(P(w_0|C_t)) \in \mathcal{T} \\
+    \text{Generate Response} & \text{otherwise}
+    \end{cases}
+\end{equation}
+Where $\text{argmax}(P(w_0|C_t))$ represents the most probable next token given the current context. If this token signifies a tool call (e.g., a special `<|tool\_code|>` token), the standard text generation pipeline is paused. The corresponding Python function (e.g., `initiate\_video\_call()`) is executed, and its return value $R_i$ (e.g., "Call initiated successfully") is injected back into the context for a subsequent inference cycle. This allows the model to confirm actions verbally, grounded in the real-world outcome of the executed tool.
+
+\paragraph{Stage III: Persona-Conditioned Synthesis (Response Formulation)}
+In the event that no tool execution is deemed necessary, the \textbf{gemma3:4b} model proceeds to generate a conversational response. This synthesis process is meticulously conditioned on the pre-defined persona constraints. The system prompt ($S$) acts as a "soft constraint," guiding the LLM to enforce a "family-like" tone while explicitly suppressing robotic boilerplate (e.g., "As an AI language model...") and overly formal Thai particles (e.g., `Ka/Krub`) in favor of natural, casual sentence structures. While explicit emotion classification is handled asynchronously, the model's self-attention mechanism implicitly attends to the sentiment within the user's text ($U_t$), allowing it to naturally modulate its lexical choice (e.g., offering comfort in response to keywords indicating distress) to maintain an empathetic dialogue flow. 
+
+\subsubsection{Subsystem C: Actuation \& Response (The Voice/Actions)}
+The abstract outputs from the cognitive core are translated into tangible, user-perceptible actions, completing the interactive loop by providing verbal feedback or executing requested tasks.
+
+\begin{itemize}
+    \item \textbf{Verbal Actuation (Neural TTS):} When the cognitive core generates a text-based conversational response, this text is forwarded to the \textbf{Google Text-to-Speech (TTS) API}. The system specifically utilizes the Neural2 model with the `th-TH-Chirp3-HD-Charon` voice. This advanced neural network-based TTS system, leveraging architectures similar to \textbf{WaveNet}, synthesizes raw audio waveforms from text by modeling the nuances of human speech, including prosody (rhythm, stress, intonation). This ensures that the chatbot's verbal responses are not only clear and intelligible but also possess a natural, human-like quality, significantly enhancing the user's perception of companionship.
+    \item \textbf{Functional Actuation:} If the cognitive core (Subsystem B, Stage II) determines that a tool execution is required based on user intent, the system performs the corresponding physical or digital action. Additionally, separate background processes manage long-term data analysis:
     \begin{itemize}
-        \item Primary use of the Thai language, with English transliteration allowed when necessary only.
-        \item A casual, natural, and family-like conversational tone.
-        \item Avoidance of formal polite particles (Ka/Krub) at the end of sentences.
-        \item Emphasis on clear, concise, and easily understandable advice.
-        \item Strict adherence to a maximum response length of 6 sentences to ensure brevity for spoken output.
+        \item \textbf{Asynchronous Mood Summary Generation:} Unlike immediate response generation, emotion tracking operates on a periodic schedule. A dedicated background script runs every 15 minutes, triggering the \textbf{gemma3:1b} model to analyze the accumulated `transcribedText` logs. This batch process classifies the user's emotional state into discrete categories (e.g., [Neutral, Happy, Relax, Sad, Pain, Anxiety, Angry]) and updates the `emotion\_history` in the Firebase database. This decoupling ensures that computationally intensive emotion trending does not introduce latency into the real-time conversation loop.
+        \item \textbf{Reminder System:} Facilitates the scheduling and management of reminders by caretakers via their mobile application. These reminders are synchronized with the backend, and at the designated time, the chatbot audibly announces them to the elderly user, leveraging the Text-to-Speech system for clear delivery.
+        \item \textbf{Caretaker Call Initiation:} Enables elderly users to directly initiate a video call to their registered caretaker. Upon detecting a specific voice command (e.g., “Call grandchild”) and confirming intent, the system activates the \textbf{ZegoCloud SDK} to establish a stable, low-latency video communication channel, thereby providing an immediate and direct connection.
     \end{itemize}
-    \item \textbf{Response Constraints:} The `num\_predict` parameter for Ollama API is set to `4096` tokens, to ensure that the model will not get stuck with just the historical context.
-\end{itemize}
-
-\subsubsection{Caretaker Interaction Features}
-\begin{itemize}
-    \item \textbf{Mood Summary Generation:} The GEMMA 3:1b model processes conversation data to categorize a set range of emotion such as [Neutral, Happy, Relax, Sad, Pain, Anxiety, Angry] of the elderly user. These moods are stored in the Firebase database for caretaker review.
-    \item \textbf{Reminder System:} Caretakers utilize the mobile application to schedule and manage reminders (e.g., for medication times or appointments). These scheduled reminders are synchronized with the backend, and the chatbot subsequently announces them aloud to the elderly user at the designated times using the Text-to-Speech system.
-    \item \textbf{Caretaker Call Initiation:} Elderly users can directly initiate a video call to their registered caretaker through a specific voice command (e.g., “Call grandchild”). Upon detecting the user’s intent, the chatbot automatically initiates the video call connection using the ZegoCloud SDK, enabling seamless communication.
 \end{itemize}
 
 %================= Database Schema =========================================
