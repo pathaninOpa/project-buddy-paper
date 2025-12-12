@@ -25,16 +25,23 @@ This section describes the methodology for developing the smart companion system
 \FloatBarrier
 
 \noindent\textbf{Key Components:}
-\begin{itemize}
-	\item \textbf{Care Receiver Application (Tablet):} The primary interface for the elderly user, responsible for audio capture, visual display, and executing local commands.
-	\item \textbf{Caregiver Application (Mobile):} A monitoring dashboard allowing family members to view mood logs, schedule reminders, and initiate video calls.
-	\item \textbf{Speech Recognition Engine:} Utilizes the \textbf{Faster Whisper} model for high-accuracy, offline Thai speech transcription.
-	\item \textbf{AI Inference Server:} A Python-based backend (FastAPI/gRPC) that handles tokenization, context management, and model execution.
-	\item \textbf{Large Language Model (LLM):} \textbf{GEMMA 3:4b} serves as the conversational core, while \textbf{GEMMA 3:1b} handles periodic emotion classification.
-	\item \textbf{Text-to-Speech (TTS):} The \textbf{Google Text-to-Speech API} converts generated text into natural-sounding Thai speech.
-	\item \textbf{Video Call System:} Integrated via the \textbf{ZegoCloud SDK} to provide stable, low-latency video communication.
-	\item \textbf{Database Systems:} A cloud storage solution using \textbf{Firebase} for real-time user data/reminders for extensive chat logs.
-\end{itemize}
+\begin{description}
+    \item[\textbf{Care Receiver Application (Tablet):}] The \textbf{Care Receiver Application} is a Flutter-based interface designed specifically for elderly users, deployed on a tablet device. It serves as the primary touchpoint for interaction, featuring a simplified UI that displays the "Buddy" avatar. This application is responsible for capturing high-fidelity audio input via the device microphone and projecting the chatbot's voice and visual responses. It maintains a persistent connection to the backend to ensure real-time responsiveness for voice commands and queries.
+    
+    \item[\textbf{Caregiver Application (Mobile):}] The \textbf{Caregiver Application} provides family members with a dedicated mobile dashboard to monitor the elderly user's well-being. It allows caretakers to view longitudinal mood logs, receive alerts, and schedule medication or appointment reminders that are pushed to the tablet. Additionally, it integrates a signaling module to initiate peer-to-peer video calls, bridging the communication gap between the elderly and their family.
+    
+    \item[\textbf{Speech Recognition Engine:}] To convert spoken Thai into digital text, the system employs the \textbf{Faster Whisper} model. This engine is optimized for high-performance inference, ensuring high-accuracy transcription even in noisy environments. It processes raw audio frames to produce the `transcribedText` tokens that serve as the input for the cognitive pipeline.
+    
+    \item[\textbf{AI Inference Server:}] The core logic resides in a Python-based \textbf{AI Inference Server}, built using FastAPI and gRPC. This server acts as the orchestration layer, managing the tokenization of input text, maintaining conversation context windows, and routing requests to the appropriate model (LLM or Sentiment Analysis). It runs on Google Compute Engine (GCE) to leverage scalable compute resources for low-latency processing.
+    
+    \item[\textbf{Large Language Model (LLM):}] The cognitive reasoning is powered by the \textbf{GEMMA 3} family of models. \textbf{GEMMA 3:4b} functions as the primary conversational brain, generating contextually aware and persona-driven responses. In parallel, a lighter \textbf{GEMMA 3:1b} model is utilized for periodic emotion classification, analyzing text logs to extract sentiment trends without blocking the main conversational flow.
+    
+    \item[\textbf{Text-to-Speech (TTS):}] To provide a natural and empathetic user experience, the \textbf{Google Text-to-Speech API} is used to synthesize the chatbot's voice. The system employs the Neural2 model (`th-TH-Chirp3-HD-Charon`), which generates high-quality Thai speech with human-like prosody and intonation, converting the LLM's text output into an audible response.
+    
+    \item[\textbf{Video Call System:}] Real-time visual communication is facilitated by the \textbf{ZegoCloud SDK}. This component establishes a stable, low-latency peer-to-peer WebRTC connection between the tablet and mobile applications. It handles the complex signaling and media negotiation required to maintain high video quality, ensuring reliable face-to-face interaction.
+    
+    \item[\textbf{Database Systems:}] Data persistence is managed through a cloud storage architecture. \textbf{Firebase} is utilized for real-time data synchronization, handling user profiles, active reminders, and immediate status updates.
+\end{description}
 %================= Data =========================================
 \section{Data}
 { 
@@ -278,7 +285,7 @@ To support the caretaker's dashboard, the system logs metadata associated with e
 \subsubsection{Subsystem A: Multimodal Perception (The Ears)}
 The Multimodal Perception subsystem serves as the sensory interface of the Buddy chatbot, tasked with bridging the physical and digital domains. Its primary objective is to transmit continuous, unstructured acoustic signals into discrete, semantically rich linguistic tokens that the downstream cognitive engine can process. Given the deployment context, for example, an elderly user's home, this subsystem must be robust against environmental challenges such as background noise (e.g., television, ambient chatter) and room reverberation. To achieve both high accuracy and computational efficiency on edge hardware, the architecture implements a three-tier processing cascade: an always-on low-power wake word detector, a spectral-based voice activity filter, and a high-fidelity Transformer-based transcription engine. This tiered approach ensures that heavy inference resources are only allocated when communicative intent is explicitly verified, optimizing the trade-off between responsiveness and power consumption.
 \begin{itemize}
-    \item \textbf{Wake Word Detection:} To optimize power consumption and privacy, the system remains in a low-power idle state until triggered by the \textbf{Picovoice Porcupine} wake word engine, which listens specifically for the keyword "Jao Buddy" (Hey Buddy) on the edge device.
+    \item \textbf{Wake Word Detection (Edge-AI):} To strictly minimize latency and privacy risks, the system remains in a dormant, low-power state until explicitly activated. This is managed by the \textbf{Picovoice Porcupine} engine, a highly efficient On-Device Wake Word detection system. Unlike cloud-based solutions that stream audio continuously, Porcupine processes the raw audio stream locally on the tablet's CPU using a specialized Recurrent Neural Network (RNN) trained on deep learning. It listens specifically for the custom keyword "Jao Buddy" (Hey Buddy). The engine computes a probability score for every incoming audio frame; only when this score exceeds a pre-configured sensitivity threshold (set to 0.7 to balance false positives and false negatives) does it trigger the downstream pipeline. This edge-based processing ensures that no audio data leaves the device until user intent is confirmed, preserving user privacy and optimizing bandwidth.
 	\item \textbf{Audio Ingestion \& Voice Activity Detection (VAD):} Once the wake word is detected
 	raw
 	audio streams are captured from the microphone in 20-30ms frames ($x_n$). To filter out background 
