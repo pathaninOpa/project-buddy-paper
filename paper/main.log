@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.12.10)  12 DEC 2025 01:03
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.12.10)  12 DEC 2025 15:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1071,38 +1071,62 @@ File: figures/Chapter3/ReminderCreateScreen.png Graphic file (type bmp)
 <figures/Chapter3/ReminderCreateScreen.png>
 File: figures/Chapter3/CallingScreen.png Graphic file (type bmp)
 <figures/Chapter3/CallingScreen.png>
- [12] [13] [14] [15] [16] [17] [18]
+ [12]
+Missing character: There is no เ in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no จ in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ้ in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no า in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no บ in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ั in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ด in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ด in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ี in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+Missing character: There is no ้ in font Times New Roman/OT:script=latn;languag
+e=dflt;!
+[13]
+File: figures/Chapter3/CareReceiverInput.png Graphic file (type bmp)
+<figures/Chapter3/CareReceiverInput.png>
+ [14] [15] [16] [17] [18] [19]
 File: figures/Chapter3/Database.png Graphic file (type bmp)
 <figures/Chapter3/Database.png>
 
-Overfull \hbox (41.97037pt too wide) in paragraph at lines 361--362
+Overfull \hbox (41.97037pt too wide) in paragraph at lines 370--371
  [][] 
  []
 
-[19] [20] [21]
+[20] [21] [22]
 
 LaTeX Font Warning: Font shape `TU/TimesNewRoman(1)/m/n' in size <15.60004> not
  available
-(Font)              size <12> substituted on input line 491.
+(Font)              size <12> substituted on input line 500.
 
-[22] [23]) (chapter4.tex [24]
+[23] [24]) (chapter4.tex [25]
 CHAPTER 4.
-[25
+[26
 
 ]
 File: figures/chap4/confusion_matrix.png Graphic file (type bmp)
 <figures/chap4/confusion_matrix.png>
- [26] [27] [28]) (chapter5.tex [29]
+ [27] [28] [29]) (chapter5.tex [30]
 CHAPTER 5.
-[30
+[31
 
-]) [31] (main.bbl
+]) [32] (main.bbl
 Underfull \hbox (badness 5403) in paragraph at lines 38--42
 []\TU/TimesNewRoman(0)/m/n/12 ZegoCloud.  Real-time voice & video call sdk, 202
 4.  URL https://
  []
 
-) [32
+) [33
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1118,12 +1142,12 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 13532 strings out of 402987
- 277842 string characters out of 5447695
+ 13542 strings out of 402987
+ 278232 string characters out of 5447695
  880717 words of memory out of 5000000
- 41982 multiletter control sequences out of 15000+600000
+ 41991 multiletter control sequences out of 15000+600000
  633792 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  88i,13n,107p,1646b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (45 pages).
+Output written on main.pdf (46 pages).
