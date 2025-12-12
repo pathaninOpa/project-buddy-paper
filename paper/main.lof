@@ -1,5 +1,5 @@
 \thispagestyle {front}
 \noindent \bfseries {Figure}\hfill {\bfseries Page}\par 
-\contentsline {figure}{\numberline {3.3}{\ignorespaces \xpg@aux {}{english}\textbf outlines the interaction between elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.}}{11}{}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces \xpg@aux {}{english}\textbf ER-Diagram for the Database}}{16}{}%
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \xpg@aux {}{english}Confusion Matrix of Emotion Classification (gemma3:1b)}}{24}{}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces \texorpdfstring {\xpg@aux {}{english}}{}\ignorespaces \textbf outlines the interaction between elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice response.}}{8}{}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces \texorpdfstring {\xpg@aux {}{english}}{}\ignorespaces \textbf ER-Diagram for the Database}}{19}{}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \texorpdfstring {\xpg@aux {}{english}}{}\ignorespaces Confusion Matrix of Emotion Classification (gemma3:1b)}}{27}{}%
