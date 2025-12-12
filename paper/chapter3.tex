@@ -206,16 +206,25 @@ This section describes the methodology for developing the smart companion system
 \begin{enumerate}[leftmargin=2.2cm]
 	\item Flutter screens:
 	\begin{enumerate}[label=\alph*.] 
-		\item Main : Initialize Firebase and Zegucloud service, while also check for app’s log-in state
+		\item Main : This file is call when app is initialize, It's purpose it to provide application the initialize of Zegucloud, for voice and video call, Offline push certificate, and the initialize of Firebase, for data base service
 		
-		\item Id input screen   : If the app never logged in before, redirect to this screen. This require user to input “buddy id” to pairing with the care giver app
+		\item Id input screen   : When user open app for first time, The app will force to redirect to this screen first to initiate the pairing function (Figure ). By pairing it's mean the user need to provide the system  buddy ID, which was create by Care Taker app, In order to let the care receiver app to retrieve 
+		buddy attribute from Firestore Database. When the buddy ID match the existing value in the collection, the application will show a confirmation box, which include name , age and gender of the elderly. If the pairing success , application navigate to Home screen and toggle the application's log-in state. If not, The error massage will be shown.
 		
-		\item Home screen       : Display the face of the chat bot
+		\item Home screen       : This screen's purpose is to display the face of the chat bot as in figure 3.8 . While also provide microphone permission, use to receive an in put for the Chat bot pipeline. This process can be done in both automatically by saying "เจ้าบัดดี้" or by pressing the microphone icon button on the button center of the screen to initialize conversation with buddy. Next component is the sign out button that use to cancel pairing between Care Taker and Care receiver app, and then lead user back to Id input screen to perform the pairing process again. The last component in this screen  is the video call button on the upper right corner. This button will navigate user to Contact screen.
 		
-		\item Contact screen   : Display the contact screen for manual calling.
+		\item Contact screen   : In this screen It provide a button or a function for a Chat bot to send a video call request to a pairing care taker, implementing a Zegucloud's he Voice and Video Call service. With a addition of Zegucloud 's Offline push certificate configuration, it enable the application to communicate to the other side even when the receiver side's application is close. On the other case, if user want to call to care taker manually, it can also be done the already implement button the contact screen. In both case, this application can only make a call to only pairing care taker app, because care receiver app has a permission to retrieve only the pairing care taker data.
 	\end{enumerate}
 	
 \end{enumerate}
+
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width = 0.8\textwidth]{figures/Chapter3/CareReceiverInput.png}
+	\caption{\textbf{Care Receiver ID input screen}}
+	\label{fig:InputScreen}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Backend Implementation}
 { 

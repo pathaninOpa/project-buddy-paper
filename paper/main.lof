@@ -1,5 +1,0 @@
-\thispagestyle {front}
-\noindent \bfseries {Figure}\hfill {\bfseries Page}\par 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces \xpg@aux {}{english}\textbf {System Architecture Overview.} This diagram outlines the interaction between the elderly application, caretaker application, and backend services. The elderly application acts as the primary interaction device, capturing voice and projecting chatbot voice responses, while the backend manages AI inference and data synchronization.}}{8}{}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces \xpg@aux {}{english}\textbf ER-Diagram for the Database}}{23}{}%
-\contentsline {figure}{\numberline {4.1}{\ignorespaces \xpg@aux {}{english}Confusion Matrix of Emotion Classification (gemma3:1b)}}{31}{}%
