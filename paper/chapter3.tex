@@ -12,7 +12,7 @@ This section describes the methodology for developing the smart companion system
 { 
 	\setlength{\leftskip}{1cm}
 	\setlength{\parindent}{2.5em}
-	Within this GCE infrastructure, the pipeline splits into synchronous and asynchronous flows. The synchronous path handles immediate interaction: \textbf{Local Faster-Whisper} transcribes speech to text, which is then processed by the \textbf{Local LLM Server (Gemma 3:4b on Ollama)} to generate a response. This response is converted to audio via \textbf{Google TTS} and streamed back to the tablet as a bot voice. Parallel to this, the transcribed text is routed to a dedicated \textbf{Sentiment Analysis} module (utilizing \textbf{gemma3:1b}). As shown by the green data flow in Figure 3.1, this module independently analyzes the text and uploads the results to the \textbf{Firebase Database}. The \textbf{Caretaker Mobile Application} connects to this ecosystem to fetch these sentiment results for the dashboard, schedule reminders (stored in Firebase and retrieved by the Tablet), and initiate \textbf{WebRTC Video Calls} directly with the tablet.
+	Within this GCE infrastructure, the pipeline splits into synchronous and asynchronous flows. The synchronous path handles immediate interaction: \textbf{Local Faster-Whisper} transcribes speech to text, which is then processed by the \textbf{Local LLM Server (Gemma 3:4b on Ollama)} to generate a response. This response is converted to audio via \textbf{Google TTS} and streamed back to the tablet as a bot voice. Parallel to this, the transcribed text is routed to a dedicated \textbf{Sentiment Analysis} module (utilizing \textbf{gemma3:1b}). As shown by the green data flow in Figure 3.1, this module independently analyzes the text and uploads the results to the \textbf{Firebase Database}. The \textbf{Caretaker Mobile Application} connects to this ecosystem to fetch these sentiment results for the dashboard, schedule reminders (stored in Firebase and retrieved by the Tablet), and initiate \textbf{ZegoCloud Video Calls} directly with the tablet.
 	\par
 }
 
@@ -40,13 +40,34 @@ This section describes the methodology for developing the smart companion system
 { 
 	\setlength{\leftskip}{1cm}
 	\setlength{\parindent}{2.5em}
-	The system relies on audio and visual data collected from elderly users during natural conversations. Audio data is captured using microphones embedded in the hardware client, while visual data is captured through cameras for real-time video communication. The collected audio data is processed for speech transcription, while text data is processed for emotion recognition and conversation generation.
+	The system operates on multimodal data streams collected continuously during user interactions. This data is categorized into three primary modalities: Acoustic, Linguistic, and Visual, each serving a distinct role in the interaction loop.
 	\par
 }
-\textbf{Data Processing}
+
+\subsection{Acoustic Data (Voice Input)}
+The primary input vector is the elderly user's spoken language. Raw audio is captured at a sampling rate of 16kHz via the tablet's microphone array. This data stream serves two purposes:
 \begin{itemize}
-	\item Audio Transcription: Faster Whisper performs automatic speech recognition (ASR) to convert spoken Thai into text with high accuracy.
-	\item Text Tokenization: Transcribed user inputs are tokenized and filtered (e.g., removing non-speech artifacts) before being processed by the LLM for emotion classification and response generation.
+    \item \textbf{Command Execution:} Immediate instructions (e.g., "Call my daughter") that trigger specific system functions.
+    \item \textbf{Conversational Context:} Natural dialogue which is transcribed into text for downstream cognitive processing.
+\end{itemize}
+
+\subsection{Linguistic Data (Text \& Context)}
+Once transcribed, the acoustic data is transformed into linguistic data (`transcribedText`). This includes:
+\begin{itemize}
+    \item \textbf{Current Utterance:} The immediate text input from the user ($U_t$).
+    \item \textbf{Conversation History:} A sliding window of previous turns ($H_{t-k:t-1}$) maintained to provide context for the Large Language Model.
+    \item \textbf{System Instructions:} Static persona definitions ($S$) that guide the agent's behavior.
+\end{itemize}
+
+\subsection{Visual Data (Real-time Communication)}
+Visual data is captured exclusively during active video calls initiated by either the user or the caretaker. This stream is processed in real-time via ZegoCloud protocols and is \textbf{not} stored persistently, ensuring user privacy.
+
+\subsection{Metadata \& Telemetry}
+To support the caretaker's dashboard, the system logs metadata associated with each interaction event, including:
+\begin{itemize}
+    \item \textbf{Timestamps:} Precise time of interaction for trend analysis.
+    \item \textbf{Emotion Tags:} The classified sentiment (e.g., "Happy", "Anxious") derived from the linguistic data.
+    \item \textbf{Session IDs:} Unique identifiers to group interactions into daily or session-based buckets for longitudinal monitoring.
 \end{itemize}
 %================= Method =========================================
 \section{Methods}
